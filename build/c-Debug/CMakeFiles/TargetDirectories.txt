@@ -1,0 +1,16 @@
+/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/GameZero.dir
+/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/edit_cache.dir
+/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/rebuild_cache.dir
+/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/list_install_components.dir
+/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/install.dir
+/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/install/local.dir
+/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/install/strip.dir
+/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/GameZero_autogen_timestamp_deps.dir
+/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/GameZero_autogen.dir
+/home/draugur/Documents/GameZero/build/c-Debug/ServerClient/CMakeFiles/ServerClient.dir
+/home/draugur/Documents/GameZero/build/c-Debug/ServerClient/CMakeFiles/edit_cache.dir
+/home/draugur/Documents/GameZero/build/c-Debug/ServerClient/CMakeFiles/rebuild_cache.dir
+/home/draugur/Documents/GameZero/build/c-Debug/ServerClient/CMakeFiles/list_install_components.dir
+/home/draugur/Documents/GameZero/build/c-Debug/ServerClient/CMakeFiles/install.dir
+/home/draugur/Documents/GameZero/build/c-Debug/ServerClient/CMakeFiles/install/local.dir
+/home/draugur/Documents/GameZero/build/c-Debug/ServerClient/CMakeFiles/install/strip.dir
