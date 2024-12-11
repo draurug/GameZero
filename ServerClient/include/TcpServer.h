@@ -19,13 +19,13 @@ public:
 
 private:
     void doAccept() {
-        std::cout << "DoAccept\n";
+        LOG("#DoAccept\n");
 
         acceptor_->async_accept(
 
             [this](boost::system::error_code ec, tcp::socket socket) {
                 if (!ec) {
-                    std::cout << "New client connected!";
+                    LOG("#New client connected!\n");
                     std::make_shared<ClientSession>(std::move(socket))->start();
                 }
                 doAccept();

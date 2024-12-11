@@ -23,13 +23,27 @@ int main()
     boost::asio::io_context io_context;
     TcpClient client(io_context);
 
-    client.connect("127.0.0.1", "15000");
+    client.connect("127.0.0.1", "15000",
+                       [&client](const boost::system::error_code& ec, const tcp::endpoint&) {
+                           if (ec) {
+                               LOG("Connection error: " << ec.message());
+                           } else {
+                               LOG("Connected successfully!");
+                               client.doWrite();
+                           }
+                       });
 
     try {
         io_context.run();
+        LOG("Client run ended\n");
     } catch (std::exception& e) {
         std::cerr << "Client error: " << e.what() << std::endl;
     }
+
     sleep(100);
     return 0;
 }
+
+//пакет впереди 2б длина и потом сам пакет, потом данные.
+//как получить ответ от сервера (сообщение) в main ф-цию.
+//переименовать переменные.

@@ -10,39 +10,35 @@ public:
     TcpClient(boost::asio::io_context& io_context)
         : resolver_(io_context), socket_(io_context) {}
 
-    void connect(const std::string& host, const std::string& port) {
+    void connect(const std::string& host, const std::string& port,
+                const std::function<void(const boost::system::error_code& ec, const tcp::endpoint&)> &func) {
         auto endpoints = resolver_.resolve(host, port);
 
-        boost::asio::async_connect(
-            socket_, endpoints,
-            [this](const boost::system::error_code& ec, const tcp::endpoint&) {
-                if (ec) {
-                    LOG("Connection error: " << ec.message());
-                } else {
-                    LOG("Connected successfully!");
-                    doWrite();
-                }
-            });
+        boost::asio::async_connect( socket_, endpoints, func );
     }
 
-private:
+    void close()
+    {
+        socket_.close();
+    }
+
     void doWrite() {
-        std::string message = "Hello, Server!";
+        std::string message = "Hello, Server";
         boost::asio::async_write(
             socket_, boost::asio::buffer(message),
             [this](const boost::system::error_code& ec, std::size_t /*length*/) {
                 if (ec) {
                     LOG("Write error: " << ec.message());
                 } else {
-                    LOG("Message sent: Hello, Server!");
+                    LOG("Message sent: Hello, Server!\n");
                     doRead();
                 }
             });
     }
 
     void doRead() {
-        boost::asio::async_read(
-            socket_, boost::asio::buffer(data_),
+        socket_.async_read_some(
+            boost::asio::buffer(data_),
             [this](const boost::system::error_code& ec, std::size_t length) {
                 if (ec) {
                     LOG("Read error: " << ec.message());
@@ -50,6 +46,8 @@ private:
                     LOG("Message received from server: "
                         << std::string(data_.data(), length));
                 }
+//todo must be removed
+                close();
             });
     }
 
