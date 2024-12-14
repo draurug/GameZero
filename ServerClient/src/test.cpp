@@ -1,5 +1,6 @@
 #include <iostream>
 #include <thread>
+#include <vector>
 #include "Logs.h"
 #include "TcpServer.h"
 #include "TcpClient.h"
@@ -24,13 +25,21 @@ int main()
     TcpClient client(io_context);
 
     client.connect("127.0.0.1", "15000",
-                       [&client](const boost::system::error_code& ec, const tcp::endpoint&) {
+                       [&client](const boost::system::error_code& ec, const tcp::endpoint&)
+                        {
                            if (ec) {
                                LOG("Connection error: " << ec.message());
                            } else {
                                LOG("Connected successfully!");
-                               client.doWrite();
-                           }
+                               client.send("$ILoveTcp",[](const boost::system::error_code& ec, const tcp::endpoint& endpoint)
+                               {
+                                    if (ec) {
+                                            LOG("Send error: " << ec.message());
+                                        } else {
+                                            LOG("Message sent successfully to " << endpoint);
+                                        }
+                                    } //reform in sending message (string)
+                                );}
                        });
 
     try {
@@ -44,6 +53,4 @@ int main()
     return 0;
 }
 
-//пакет впереди 2б длина и потом сам пакет, потом данные.
-//как получить ответ от сервера (сообщение) в main ф-цию.
 //переименовать переменные.

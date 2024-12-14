@@ -5,31 +5,43 @@
 
 using boost::asio::ip::tcp;
 
-class TcpClient {
+
+class TcpClient
+{
+
+    tcp::resolver m_resolver;
+    tcp::socket m_socket;
+    std::array<char, 1024> m_data;
+    std::vector<char> m_packet;
+
 public:
     TcpClient(boost::asio::io_context& io_context)
-        : resolver_(io_context), socket_(io_context) {}
+        : m_resolver(io_context), m_socket(io_context) {}
 
     void connect(const std::string& host, const std::string& port,
                 const std::function<void(const boost::system::error_code& ec, const tcp::endpoint&)> &func) {
-        auto endpoints = resolver_.resolve(host, port);
+        auto endpoints = m_resolver.resolve(host, port);
 
-        boost::asio::async_connect( socket_, endpoints, func );
+        boost::asio::async_connect( m_socket, endpoints, func );
     }
 
     void close()
     {
-        socket_.close();
+        m_socket.close();
     }
 
     void doWrite() {
         std::string message = "Hello, Server";
         boost::asio::async_write(
-            socket_, boost::asio::buffer(message),
-            [this](const boost::system::error_code& ec, std::size_t /*length*/) {
-                if (ec) {
+            m_socket, boost::asio::buffer(message),
+            [this](const boost::system::error_code& ec, std::size_t /*length*/)
+            {
+                if (ec)
+                {
                     LOG("Write error: " << ec.message());
-                } else {
+                }
+                else
+                {
                     LOG("Message sent: Hello, Server!\n");
                     doRead();
                 }
@@ -37,21 +49,50 @@ public:
     }
 
     void doRead() {
-        socket_.async_read_some(
-            boost::asio::buffer(data_),
+        m_socket.async_read_some(
+            boost::asio::buffer(m_data),
             [this](const boost::system::error_code& ec, std::size_t length) {
                 if (ec) {
                     LOG("Read error: " << ec.message());
                 } else {
                     LOG("Message received from server: "
-                        << std::string(data_.data(), length));
+                        << std::string(m_data.data(), length));
                 }
 //todo must be removed
                 close();
             });
     }
 
-    tcp::resolver resolver_;
-    tcp::socket socket_;
-    std::array<char, 1024> data_;
+    //send function adding
+    void send(std::string message, const std::function<void(const boost::system::error_code& ec, const tcp::endpoint&)>& handleResponse)
+    {
+        // Формирование пакета с 2 байтами длины в начале
+        uint16_t length = static_cast<uint16_t>(message.size());
+        m_packet.reserve(2 + message.size() );
+
+        // Добавляем длину пакета в начало (big-endian)
+        m_packet.push_back(static_cast<char>((length >> 8) & 0xFF));
+\
+        // Добавляем само сообщение
+        m_packet.insert(m_packet.end(), message.begin(), message.end());
+
+        // Отправляем сформированный пакет
+        boost::asio::async_write(
+            m_socket, boost::asio::buffer(m_packet),
+            [this, handleResponse](const boost::system::error_code& ec, std::size_t /*length*/)
+            {
+                if (ec)
+                {
+                    LOG("Write error: " << ec.message());
+                    handleResponse(ec, m_socket.remote_endpoint());
+                }
+                else
+                {
+                    LOG("Message sent: " << std::string(m_packet.begin() + 2, m_packet.end()));
+                    doRead(); //doRead() обрабатывает ответ от сервера.
+                    handleResponse(ec, m_socket.remote_endpoint());
+                }
+            });
+    }
+    //пакет впереди 2б длина и потом сам пакет
 };
