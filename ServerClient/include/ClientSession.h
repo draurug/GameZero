@@ -21,6 +21,7 @@ public:
     {
         LOG("#Client session destroyed");
     };
+
     void start()
     {
         doRead();
@@ -28,31 +29,39 @@ public:
 
 
 private:
+
+    tcp::socket m_socket;
+    std::array<char, 1024> m_data;
+
     void doRead() {
         auto self(shared_from_this());
+        //посмотреть реализацию в Packet версии и аналог создать здесь (вначале читаем длину, а потом весь пакет)
+        //добавить связь с сервером, чтобы оповещать сервер о получении сообщения
+        // аналогично сделать для клиента
         m_socket.async_read_some(
             boost::asio::buffer(m_data),
-            [this, self](boost::system::error_code ec, std::size_t length) {
+            [this, self](boost::system::error_code ec, std::size_t length)
+            {
                 if (!ec) {
                     LOG( "#Received from client: " << std::string(m_data.data(), length) );
-                    doWrite(length);
+                    doWrite(length); //
                 }
             });
     }
 
-    void doWrite(std::size_t length) {
+    void doWrite(std::size_t length)
+    {
         auto self(shared_from_this());
         LOG("#Before writing");
         boost::asio::async_write(
             m_socket, boost::asio::buffer(m_data, length),
-            [this, self](boost::system::error_code ec, std::size_t /*length*/) {
+            [this, self](boost::system::error_code ec, std::size_t /*length*/)
+            {
                 LOG("#Did write");
-                if (!ec) {
+                if (!ec)
+                {
                     doRead();
                 }
             });
     }
-
-    tcp::socket m_socket;
-    std::array<char, 1024> m_data;
 };

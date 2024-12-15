@@ -24,14 +24,16 @@ int main()
     boost::asio::io_context io_context;
     TcpClient client(io_context);
 
+    //std::string str(1000, 'f');
+    std::string str = "IloveTcp";
     client.connect("127.0.0.1", "15000",
-                       [&client](const boost::system::error_code& ec, const tcp::endpoint&)
+                       [&client, &str](const boost::system::error_code& ec, const tcp::endpoint&)
                         {
                            if (ec) {
                                LOG("Connection error: " << ec.message());
                            } else {
                                LOG("Connected successfully!");
-                               client.send("$ILoveTcp",[](const boost::system::error_code& ec, const tcp::endpoint& endpoint)
+                               client.send(str,[](const boost::system::error_code& ec, const tcp::endpoint& endpoint)
                                {
                                     if (ec) {
                                             LOG("Send error: " << ec.message());
@@ -53,4 +55,3 @@ int main()
     return 0;
 }
 
-//переименовать переменные.

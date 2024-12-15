@@ -66,13 +66,23 @@ public:
     //send function adding
     void send(std::string message, const std::function<void(const boost::system::error_code& ec, const tcp::endpoint&)>& handleResponse)
     {
-        // Формирование пакета с 2 байтами длины в начале
+        // union{
+        //     uint16_t length = 10;
+        //     uint8_t bytes[2];
+        // };
+
+        // LOG(int(bytes[0]));
+        // LOG(int(bytes[1]));
+        // exit(0);
+
         uint16_t length = static_cast<uint16_t>(message.size());
+        // Формирование пакета с 2 байтами длины в начале
         m_packet.reserve(2 + message.size() );
 
-        // Добавляем длину пакета в начало (big-endian)
-        m_packet.push_back(static_cast<char>((length >> 8) & 0xFF));
-\
+        // Добавляем длину пакета в начало (little-endian)
+        m_packet.push_back(static_cast<char>((length) & 0xFF));
+        m_packet.push_back(static_cast<char>((length >> 8) &0xFF));
+
         // Добавляем само сообщение
         m_packet.insert(m_packet.end(), message.begin(), message.end());
 
