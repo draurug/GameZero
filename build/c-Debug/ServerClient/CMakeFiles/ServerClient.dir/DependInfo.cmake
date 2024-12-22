@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/draugur/Documents/GameZero/ServerClient/src/ClientSession.cpp" "ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o" "gcc" "ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o.d"
   "/home/draugur/Documents/GameZero/ServerClient/src/test.cpp" "ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o" "gcc" "ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o.d"
   )
 

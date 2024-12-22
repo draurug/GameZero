@@ -16,6 +16,7 @@ add_executable(ServerClient
     include/TcpServer.h
     include/TcpClient.h
     include/ClientSession.h
+    src/ClientSession.cpp
 )
 
 # Include directories for header files

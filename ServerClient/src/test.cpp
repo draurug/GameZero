@@ -22,8 +22,15 @@ int main()
     });
     sleep(1);
     boost::asio::io_context io_context;
-    TcpClient client(io_context);
-
+    TcpClient client(io_context, [](const boost::system::error_code& ec, std::size_t, void* data)
+                               {
+                                    // if (ec) {
+                                    //         LOG("Send error: " << ec.message());
+                                    //     } else {
+                                    //         LOG("Message sent successfully to ");
+                                    //     } --??
+                                 //reform in sending message (string)
+                                });
     //std::string str(1000, 'f');
     std::string str = "IloveTcp";
     client.connect("127.0.0.1", "15000",
@@ -33,15 +40,8 @@ int main()
                                LOG("Connection error: " << ec.message());
                            } else {
                                LOG("Connected successfully!");
-                               client.send(str,[](const boost::system::error_code& ec, const tcp::endpoint& endpoint)
-                               {
-                                    if (ec) {
-                                            LOG("Send error: " << ec.message());
-                                        } else {
-                                            LOG("Message sent successfully to " << endpoint);
-                                        }
-                                    } //reform in sending message (string)
-                                );}
+                               client.send(str);
+                           }
                        });
 
     try {
@@ -55,3 +55,4 @@ int main()
     return 0;
 }
 
+//userApplication (текст.поле, кнопка send, в нижнее поле приходит ответ)

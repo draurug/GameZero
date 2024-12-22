@@ -2,16 +2,18 @@
 
 #include <boost/asio.hpp>
 #include <memory>
+#include <vector>
 #include <string>
 #include "Logs.h"
+class TcpServer;
 
 using boost::asio::ip::tcp;
 
 class ClientSession : public std::enable_shared_from_this<ClientSession>
 {
 public:
-    explicit ClientSession(tcp::socket socket)
-        : m_socket(std::move(socket))
+    explicit ClientSession(tcp::socket socket, TcpServer& server )
+        : m_socket(std::move(socket)), m_server(server)
     {
         boost::asio::socket_base::linger linger_option(true, 0);
         m_socket.set_option(linger_option);
@@ -27,41 +29,16 @@ public:
         doRead();
     }
 
-
+    void send(const std::string& message);
 private:
 
     tcp::socket m_socket;
-    std::array<char, 1024> m_data;
+    std::vector<uint8_t> m_data;
+    TcpServer& m_server;
 
-    void doRead() {
-        auto self(shared_from_this());
-        //посмотреть реализацию в Packet версии и аналог создать здесь (вначале читаем длину, а потом весь пакет)
-        //добавить связь с сервером, чтобы оповещать сервер о получении сообщения
-        // аналогично сделать для клиента
-        m_socket.async_read_some(
-            boost::asio::buffer(m_data),
-            [this, self](boost::system::error_code ec, std::size_t length)
-            {
-                if (!ec) {
-                    LOG( "#Received from client: " << std::string(m_data.data(), length) );
-                    doWrite(length); //
-                }
-            });
-    }
+    void doRead();
+    void doWrite(std::size_t length);
+    void notifyServer(boost::system::error_code ec, std::size_t length, uint8_t* data);
 
-    void doWrite(std::size_t length)
-    {
-        auto self(shared_from_this());
-        LOG("#Before writing");
-        boost::asio::async_write(
-            m_socket, boost::asio::buffer(m_data, length),
-            [this, self](boost::system::error_code ec, std::size_t /*length*/)
-            {
-                LOG("#Did write");
-                if (!ec)
-                {
-                    doRead();
-                }
-            });
-    }
+
 };

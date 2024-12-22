@@ -13,10 +13,12 @@ class TcpClient
     tcp::socket m_socket;
     std::array<char, 1024> m_data;
     std::vector<char> m_packet;
+    std::function<void(const boost::system::error_code&, std::size_t, void* data)> m_handleResponse;
 
 public:
-    TcpClient(boost::asio::io_context& io_context)
-        : m_resolver(io_context), m_socket(io_context) {}
+    TcpClient(boost::asio::io_context& io_context, std::function<void(const boost::system::error_code&, std::size_t, void* data)> handleResponse)
+        : m_resolver(io_context), m_socket(io_context), m_handleResponse(handleResponse)
+    {}
 
     void connect(const std::string& host, const std::string& port,
                 const std::function<void(const boost::system::error_code& ec, const tcp::endpoint&)> &func) {
@@ -64,7 +66,7 @@ public:
     }
 
     //send function adding
-    void send(std::string message, const std::function<void(const boost::system::error_code& ec, const tcp::endpoint&)>& handleResponse)
+    void send(std::string message)
     {
         // union{
         //     uint16_t length = 10;
@@ -89,20 +91,19 @@ public:
         // Отправляем сформированный пакет
         boost::asio::async_write(
             m_socket, boost::asio::buffer(m_packet),
-            [this, handleResponse](const boost::system::error_code& ec, std::size_t /*length*/)
+            [this](const boost::system::error_code& ec, std::size_t length)
             {
                 if (ec)
                 {
                     LOG("Write error: " << ec.message());
-                    handleResponse(ec, m_socket.remote_endpoint());
+                    m_handleResponse(ec, length, m_packet.data());
                 }
                 else
                 {
                     LOG("Message sent: " << std::string(m_packet.begin() + 2, m_packet.end()));
                     doRead(); //doRead() обрабатывает ответ от сервера.
-                    handleResponse(ec, m_socket.remote_endpoint());
+                    m_handleResponse(ec, length, m_packet.data());
                 }
             });
     }
-    //пакет впереди 2б длина и потом сам пакет
 };
