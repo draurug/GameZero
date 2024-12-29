@@ -25,7 +25,8 @@ void ClientSession::doRead()
                 std::string received_data(m_data.data(), m_data.data() + length);
                 LOG("#Received from client: " << received_data);
 
-            } else
+            }
+            else
             {
                 LOG("Error in doRead: " + ec.message());
             }
@@ -67,9 +68,12 @@ void ClientSession::send(const std::string& message)
         m_socket, boost::asio::buffer(packet),
         [self](boost::system::error_code ec, std::size_t /*length*/)
         {
-            if (!ec) {
+            if (!ec)
+            {
                 LOG("Notification sent to client!");
-            } else {
+            }
+            else
+            {
                 LOG("Error sending notification: " << ec.message());
             }
         });

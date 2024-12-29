@@ -11,6 +11,10 @@ using boost::asio::ip::tcp;
 
 class ClientSession : public std::enable_shared_from_this<ClientSession>
 {
+    tcp::socket m_socket;
+    std::vector<uint8_t> m_data;
+    TcpServer& m_server;
+
 public:
     explicit ClientSession(tcp::socket socket, TcpServer& server )
         : m_socket(std::move(socket)), m_server(server)
@@ -30,15 +34,9 @@ public:
     }
 
     void send(const std::string& message);
+
 private:
-
-    tcp::socket m_socket;
-    std::vector<uint8_t> m_data;
-    TcpServer& m_server;
-
     void doRead();
     void doWrite(std::size_t length);
     void notifyServer(boost::system::error_code ec, std::size_t length, uint8_t* data);
-
-
 };

@@ -15,13 +15,15 @@
 			"target_link_libraries",
 			"set_property",
 			"_populate_Widgets_target_properties",
-			"find_package"
+			"find_package",
+			"target_include_directories"
 		],
 		"files" : 
 		[
 			"CMakeLists.txt",
 			"/usr/lib/x86_64-linux-gnu/cmake/Qt5Widgets/Qt5WidgetsConfig.cmake",
-			"/usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5Config.cmake"
+			"/usr/lib/x86_64-linux-gnu/cmake/Qt5/Qt5Config.cmake",
+			"ServerClient/CMakeLists.txt"
 		],
 		"nodes" : 
 		[
@@ -31,19 +33,31 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 41,
+				"line" : 42,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 64,
+				"line" : 66,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 47,
+				"line" : 49,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 48,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 74,
 				"parent" : 0
 			},
 			{
@@ -54,29 +68,50 @@
 			},
 			{
 				"file" : 2,
-				"parent" : 4
+				"parent" : 6
 			},
 			{
 				"command" : 5,
 				"file" : 2,
 				"line" : 28,
-				"parent" : 5
+				"parent" : 7
 			},
 			{
 				"file" : 1,
-				"parent" : 6
+				"parent" : 8
 			},
 			{
 				"command" : 4,
 				"file" : 1,
 				"line" : 213,
-				"parent" : 7
+				"parent" : 9
 			},
 			{
 				"command" : 3,
 				"file" : 1,
 				"line" : 57,
-				"parent" : 8
+				"parent" : 10
+			},
+			{
+				"file" : 3
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 28,
+				"parent" : 12
+			},
+			{
+				"command" : 2,
+				"file" : 3,
+				"line" : 31,
+				"parent" : 12
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 72,
+				"parent" : 0
 			}
 		]
 	},
@@ -89,22 +124,30 @@
 					"fragment" : "-DQT_QML_DEBUG -g -std=gnu++17 -fcolor-diagnostics"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"fragment" : "-fPIC"
 				}
 			],
 			"defines" : 
 			[
 				{
-					"backtrace" : 3,
+					"backtrace" : 5,
+					"define" : "BOOST_SYSTEM_DYN_LINK"
+				},
+				{
+					"backtrace" : 5,
+					"define" : "BOOST_SYSTEM_NO_LIB"
+				},
+				{
+					"backtrace" : 4,
 					"define" : "QT_CORE_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"define" : "QT_GUI_LIB"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"define" : "QT_WIDGETS_LIB"
 				}
 			],
@@ -115,27 +158,31 @@
 					"path" : "/home/draugur/Documents/GameZero/build/c-Debug/GameZero_autogen/include"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 15,
+					"path" : "/home/draugur/Documents/GameZero/ServerClient/include"
+				},
+				{
+					"backtrace" : 4,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt5"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtWidgets"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtGui"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"isSystem" : true,
 					"path" : "/usr/include/x86_64-linux-gnu/qt5/QtCore"
 				},
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"isSystem" : true,
 					"path" : "/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++"
 				}
@@ -145,7 +192,7 @@
 			{
 				"backtraces" : 
 				[
-					3
+					4
 				],
 				"standard" : "17"
 			},
@@ -159,6 +206,10 @@
 	],
 	"dependencies" : 
 	[
+		{
+			"backtrace" : 3,
+			"id" : "ServerClient::@ae412daca24140bbe658"
+		},
 		{
 			"id" : "GameZero_autogen_timestamp_deps::@6890427a1f51a3e7e1df"
 		},
@@ -196,17 +247,42 @@
 			},
 			{
 				"backtrace" : 3,
+				"fragment" : "ServerClient/libServerClient.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 4,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.13",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 9,
+				"backtrace" : 5,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 3,
+				"fragment" : "ServerClient/libServerClient.a",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 11,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.13",
 				"role" : "libraries"
 			},
 			{
-				"backtrace" : 9,
+				"backtrace" : 11,
 				"fragment" : "/usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.13",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 13,
+				"fragment" : "/usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0",
+				"role" : "libraries"
+			},
+			{
+				"backtrace" : 14,
+				"fragment" : "-lpthread",
 				"role" : "libraries"
 			}
 		],

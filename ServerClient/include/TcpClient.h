@@ -1,5 +1,4 @@
 #include <boost/asio.hpp>
-#include <iostream>
 #include <string>
 #include "Logs.h"
 
@@ -21,7 +20,8 @@ public:
     {}
 
     void connect(const std::string& host, const std::string& port,
-                const std::function<void(const boost::system::error_code& ec, const tcp::endpoint&)> &func) {
+                const std::function<void(const boost::system::error_code& ec, const tcp::endpoint&)> &func)
+    {
         auto endpoints = m_resolver.resolve(host, port);
 
         boost::asio::async_connect( m_socket, endpoints, func );
@@ -32,7 +32,8 @@ public:
         m_socket.close();
     }
 
-    void doWrite() {
+    void doWrite()
+    {
         std::string message = "Hello, Server";
         boost::asio::async_write(
             m_socket, boost::asio::buffer(message),
@@ -50,13 +51,18 @@ public:
             });
     }
 
-    void doRead() {
+    void doRead()
+    {
         m_socket.async_read_some(
             boost::asio::buffer(m_data),
-            [this](const boost::system::error_code& ec, std::size_t length) {
-                if (ec) {
+            [this](const boost::system::error_code& ec, std::size_t length)
+            {
+                if (ec)
+                {
                     LOG("Read error: " << ec.message());
-                } else {
+                }
+                else
+                {
                     LOG("Message received from server: "
                         << std::string(m_data.data(), length));
                 }
@@ -68,7 +74,8 @@ public:
     //send function adding
     void send(std::string message)
     {
-        // union{
+        // union
+        //{
         //     uint16_t length = 10;
         //     uint8_t bytes[2];
         // };

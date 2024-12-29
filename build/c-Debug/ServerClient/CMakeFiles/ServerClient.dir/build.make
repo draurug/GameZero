@@ -69,24 +69,10 @@ include ServerClient/CMakeFiles/ServerClient.dir/progress.make
 # Include the compile flags for this target's objects.
 include ServerClient/CMakeFiles/ServerClient.dir/flags.make
 
-ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o: ServerClient/CMakeFiles/ServerClient.dir/flags.make
-ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o: /home/draugur/Documents/GameZero/ServerClient/src/test.cpp
-ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o: ServerClient/CMakeFiles/ServerClient.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o"
-	cd /home/draugur/Documents/GameZero/build/c-Debug/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o -MF CMakeFiles/ServerClient.dir/src/test.cpp.o.d -o CMakeFiles/ServerClient.dir/src/test.cpp.o -c /home/draugur/Documents/GameZero/ServerClient/src/test.cpp
-
-ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ServerClient.dir/src/test.cpp.i"
-	cd /home/draugur/Documents/GameZero/build/c-Debug/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/draugur/Documents/GameZero/ServerClient/src/test.cpp > CMakeFiles/ServerClient.dir/src/test.cpp.i
-
-ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ServerClient.dir/src/test.cpp.s"
-	cd /home/draugur/Documents/GameZero/build/c-Debug/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/draugur/Documents/GameZero/ServerClient/src/test.cpp -o CMakeFiles/ServerClient.dir/src/test.cpp.s
-
 ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o: ServerClient/CMakeFiles/ServerClient.dir/flags.make
 ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o: /home/draugur/Documents/GameZero/ServerClient/src/ClientSession.cpp
 ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o: ServerClient/CMakeFiles/ServerClient.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o"
 	cd /home/draugur/Documents/GameZero/build/c-Debug/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o -MF CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o.d -o CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o -c /home/draugur/Documents/GameZero/ServerClient/src/ClientSession.cpp
 
 ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.i: cmake_force
@@ -97,23 +83,38 @@ ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ServerClient.dir/src/ClientSession.cpp.s"
 	cd /home/draugur/Documents/GameZero/build/c-Debug/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/draugur/Documents/GameZero/ServerClient/src/ClientSession.cpp -o CMakeFiles/ServerClient.dir/src/ClientSession.cpp.s
 
+ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o: ServerClient/CMakeFiles/ServerClient.dir/flags.make
+ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o: /home/draugur/Documents/GameZero/ServerClient/src/test.cpp
+ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o: ServerClient/CMakeFiles/ServerClient.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o"
+	cd /home/draugur/Documents/GameZero/build/c-Debug/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o -MF CMakeFiles/ServerClient.dir/src/test.cpp.o.d -o CMakeFiles/ServerClient.dir/src/test.cpp.o -c /home/draugur/Documents/GameZero/ServerClient/src/test.cpp
+
+ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ServerClient.dir/src/test.cpp.i"
+	cd /home/draugur/Documents/GameZero/build/c-Debug/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/draugur/Documents/GameZero/ServerClient/src/test.cpp > CMakeFiles/ServerClient.dir/src/test.cpp.i
+
+ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ServerClient.dir/src/test.cpp.s"
+	cd /home/draugur/Documents/GameZero/build/c-Debug/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/draugur/Documents/GameZero/ServerClient/src/test.cpp -o CMakeFiles/ServerClient.dir/src/test.cpp.s
+
 # Object files for target ServerClient
 ServerClient_OBJECTS = \
-"CMakeFiles/ServerClient.dir/src/test.cpp.o" \
-"CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o"
+"CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o" \
+"CMakeFiles/ServerClient.dir/src/test.cpp.o"
 
 # External object files for target ServerClient
 ServerClient_EXTERNAL_OBJECTS =
 
-ServerClient/ServerClient: ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o
-ServerClient/ServerClient: ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o
-ServerClient/ServerClient: ServerClient/CMakeFiles/ServerClient.dir/build.make
-ServerClient/ServerClient: ServerClient/CMakeFiles/ServerClient.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ServerClient"
+ServerClient/libServerClient.a: ServerClient/CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o
+ServerClient/libServerClient.a: ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o
+ServerClient/libServerClient.a: ServerClient/CMakeFiles/ServerClient.dir/build.make
+ServerClient/libServerClient.a: ServerClient/CMakeFiles/ServerClient.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libServerClient.a"
+	cd /home/draugur/Documents/GameZero/build/c-Debug/ServerClient && $(CMAKE_COMMAND) -P CMakeFiles/ServerClient.dir/cmake_clean_target.cmake
 	cd /home/draugur/Documents/GameZero/build/c-Debug/ServerClient && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ServerClient.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-ServerClient/CMakeFiles/ServerClient.dir/build: ServerClient/ServerClient
+ServerClient/CMakeFiles/ServerClient.dir/build: ServerClient/libServerClient.a
 .PHONY : ServerClient/CMakeFiles/ServerClient.dir/build
 
 ServerClient/CMakeFiles/ServerClient.dir/clean:

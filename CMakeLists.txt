@@ -13,6 +13,7 @@ add_subdirectory(ServerClient)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
+find_package(Boost REQUIRED COMPONENTS system)
 
 set(PROJECT_SOURCES
         main.cpp
@@ -45,6 +46,7 @@ else()
 endif()
 
 target_link_libraries(GameZero PRIVATE Qt${QT_VERSION_MAJOR}::Widgets)
+target_link_libraries(GameZero PRIVATE ServerClient)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an
@@ -66,6 +68,10 @@ install(TARGETS GameZero
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+target_include_directories(GameZero PRIVATE ${CMAKE_SOURCE_DIR}/ServerClient/include)
+# target_include_directories(GameZero PRIVATE ${CMAKE_SOURCE_DIR}/ServerClient/scr)
+target_link_libraries(GameZero PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Boost::system ServerClient)
 
 if(QT_VERSION_MAJOR EQUAL 6)
     qt_finalize_executable(GameZero)

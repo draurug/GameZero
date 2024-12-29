@@ -1,4 +1,6 @@
 #define ABI_ID "ELF"
+#define BOOST_SYSTEM_DYN_LINK 1
+#define BOOST_SYSTEM_NO_LIB 1
 #define QT_CORE_LIB 1
 #define QT_GUI_LIB 1
 #define QT_WIDGETS_LIB 1
