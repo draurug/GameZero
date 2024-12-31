@@ -7,8 +7,7 @@
 #include <thread>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow),
-    m_client(nullptr), io_thread()
+    : QMainWindow(parent), ui(new Ui::MainWindow), m_client(nullptr)
 {
     ui->setupUi(this);
 
@@ -27,34 +26,19 @@ MainWindow::MainWindow(QWidget *parent)
 
     // Установка соединения с сервером
     std::string str = "IloveTcp";
-    m_client->connect("127.0.0.1", "15000",
+    m_client->connect("127.0.0.1", "1500",
                       [this, str](const boost::system::error_code& ec, const tcp::endpoint&) {
                           if (ec) {
                               LOG("Connection error: " << ec.message());
                           } else {
                               LOG("Connected successfully!");
-                              m_client->send(str); // Используем член класса m_client
+                              m_client->send(str);
                           }
                       });
-
-    // Запуск io_context в отдельном потоке
-    io_thread = std::thread([this]() {
-        try {
-            io_context.run();
-        } catch (const std::exception& e) {
-            LOG("Error in io_context: " << e.what());
-        }
-    });
 }
 
 MainWindow::~MainWindow()
 {
-    // Остановка io_context и завершение потока
-    io_context.stop();
-    if (io_thread.joinable()) {
-        io_thread.join();
-    }
-
     delete m_client;
     delete ui;
 }
@@ -81,10 +65,28 @@ void MainWindow::onSendButtonClicked()
     ui->m_messageInput->clear();
 }
 
-void MainWindow::onMessageReceived(const std::string &message)
-{
+void MainWindow::onMessageReceived(const std::string &message) {
     // Отображение полученного сообщения в текстовом поле
     QString receivedMessage = QString::fromStdString(message);
     ui->m_messageOutput->append("Server: " + receivedMessage);
     LOG("Message received: " << message);
+}
+
+void MainWindow::dbgStartServer()
+{
+    // Запуск io_context в отдельном потоке
+    std::thread ([]
+                {
+                    boost::asio::io_context io_context;
+                    try
+                    {
+                        TcpServer server(io_context, 1500);
+                        io_context.run();
+                    }
+                    catch (const std::exception& e)
+                    {
+                        LOG("Error in io_context: " << e.what());
+                    }
+                }).detach();
+    sleep(1);
 }

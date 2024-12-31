@@ -6,24 +6,20 @@
 #include <QPushButton>
 #include "TcpClient.h"
 
-namespace Ui
-{
+namespace Ui {
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
     Ui::MainWindow *ui;
-    TcpClient* m_client; // Клиент для работы с сервером
-    //    std::unique_ptr<TcpClient> m_client; // предложение гпт (вызывает конфликт в срр)
-    boost::asio::io_context io_context; // Контекст для работы Boost.Asio
-    std::thread io_thread;
+    TcpClient* m_client;
+    boost::asio::io_context io_context;
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
+    static void dbgStartServer();
 private slots:
     void onSendButtonClicked(); // Обработчик кнопки Send
     void onMessageReceived(const std::string& message); // Обработчик полученных сообщений

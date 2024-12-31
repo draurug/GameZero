@@ -52,6 +52,5 @@ private:
                 doAccept();
             });
     }
-
 };
 
