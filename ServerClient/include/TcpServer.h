@@ -1,6 +1,6 @@
 #pragma once
-
-#include "ClientSession.h"
+#include "Logs.h"
+#include "Session.h"
 #include <boost/asio.hpp>
 #include <optional>
 
@@ -20,14 +20,14 @@ public:
         doAccept();
     }
 
-    void onPacketReceived(boost::system::error_code ec, std::size_t length, uint8_t* data, std::shared_ptr<ClientSession> session)
+    void onPacketReceived(boost::system::error_code ec, std::size_t length, uint8_t* data, std::shared_ptr<Session> m_session)
     {
         if(!ec)
         {
             LOG("#PacketReceived");
             std::string message( data, data + length);
             LOG("Received message: " + message);
-            session ->send("Acknowledged: " + message);
+            m_session ->send("Acknowledged: " + message);
         }
         else
         {
@@ -47,7 +47,7 @@ private:
                 if (!ec)
                 {
                     LOG("#New client connected!\n");
-                    std::make_shared<ClientSession>(std::move(socket), *this)->start();
+                    std::make_shared<Session>(std::move(socket), *this)->start();
                 }
                 doAccept();
             });

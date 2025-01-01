@@ -66,8 +66,8 @@ include CMakeFiles/GameZero_autogen_timestamp_deps.dir/compiler_depend.make
 # Include the progress variables for this target.
 include CMakeFiles/GameZero_autogen_timestamp_deps.dir/progress.make
 
-CMakeFiles/GameZero_autogen_timestamp_deps: /usr/lib/qt5/bin/uic
 CMakeFiles/GameZero_autogen_timestamp_deps: /usr/lib/qt5/bin/moc
+CMakeFiles/GameZero_autogen_timestamp_deps: /usr/lib/qt5/bin/uic
 CMakeFiles/GameZero_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0
 
 GameZero_autogen_timestamp_deps: CMakeFiles/GameZero_autogen_timestamp_deps

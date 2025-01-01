@@ -2,11 +2,11 @@
 #include <memory>
 #include <vector>
 #include <string>
-#include "ClientSession.h"
+#include "Session.h"
 #include "Logs.h"
 #include "TcpServer.h"
 
-void ClientSession::doRead()
+void Session::doRead()
 {
         auto self(shared_from_this());
         //посмотреть реализацию в Packet версии и аналог создать здесь (вначале читаем длину, а потом весь пакет) done
@@ -24,7 +24,7 @@ void ClientSession::doRead()
             {
                 std::string received_data(m_data.data(), m_data.data() + length);
                 LOG("#Received from client: " << received_data);
-
+                doRead();
             }
             else
             {
@@ -33,7 +33,7 @@ void ClientSession::doRead()
         });
     }
 
-void ClientSession::doWrite(std::size_t length)
+void Session::doWrite(std::size_t length)
 {
     auto self(shared_from_this());
     LOG("#Before writing");
@@ -42,20 +42,25 @@ void ClientSession::doWrite(std::size_t length)
         [this, self](boost::system::error_code ec, std::size_t /*length*/)
         {
             LOG("#Did write");
-            if (!ec)
+            try
             {
-                doRead();
+                m_socket.close();
+            } catch(...){}
+
+            if (ec)
+            {
+                LOG("Error in doWrite " + ec.message());
             }
         });
 }
 
-void ClientSession::notifyServer(boost::system::error_code ec, std::size_t length, uint8_t* data)
+void Session::notifyServer(boost::system::error_code ec, std::size_t length, uint8_t* data)
 {
     LOG("#Notifying server about received message");
     m_server.onPacketReceived(ec, length, data, shared_from_this());
 }
 
-void ClientSession::send(const std::string& message)
+void Session::send(const std::string& message)
 {
     uint16_t length = static_cast<uint16_t>(message.size());
     std::vector<uint8_t> packet;

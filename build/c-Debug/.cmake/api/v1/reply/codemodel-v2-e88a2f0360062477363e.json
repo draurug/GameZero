@@ -79,7 +79,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "GameZero::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-GameZero-Debug-470e85cb4563fc022ab6.json",
+					"jsonFile" : "target-GameZero-Debug-1ff51ba7719e3701d934.json",
 					"name" : "GameZero",
 					"projectIndex" : 0
 				},
@@ -100,7 +100,7 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "ServerClient::@ae412daca24140bbe658",
-					"jsonFile" : "target-ServerClient-Debug-2e303edb2ca46cabd5f7.json",
+					"jsonFile" : "target-ServerClient-Debug-bfbeb2c89e262cc40b55.json",
 					"name" : "ServerClient",
 					"projectIndex" : 1
 				}

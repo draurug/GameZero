@@ -7,32 +7,40 @@
 #include <thread>
 
 MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent), ui(new Ui::MainWindow), m_client(nullptr)
+    : QMainWindow(parent), ui(new Ui::MainWindow), m_client(nullptr), io_context()
 {
     ui->setupUi(this);
+    dbgStartServer();
 
     // Настройка кнопки Send
     connect(ui->m_sendButton, &QPushButton::clicked, this, &MainWindow::onSendButtonClicked);
+    connect(this, &MainWindow::onMessageReceived, ui->m_messageOutput, &QTextEdit::append, Qt::QueuedConnection);
 
     // Инициализация TcpClient
     m_client = new TcpClient(io_context,
-                             [this](const boost::system::error_code& ec, std::size_t, void* data) {
+                             [this](const boost::system::error_code& ec, std::size_t, void* data)
+                             {
                                  if (ec) {
                                      LOG("Send error: " << ec.message());
-                                 } else {
+                                 } else  {
                                      LOG("Message sent successfully!");
                                  }
+                             },
+                             [this](const std::string& message)
+                             {
+                                 LOG("onMessageReceived used successfully?");
+                                 emit this->onMessageReceived(QString::fromStdString(message));
                              });
 
     // Установка соединения с сервером
-    std::string str = "IloveTcp";
     m_client->connect("127.0.0.1", "1500",
-                      [this, str](const boost::system::error_code& ec, const tcp::endpoint&) {
+                      [this](const boost::system::error_code& ec, const tcp::endpoint&)
+                      {
                           if (ec) {
                               LOG("Connection error: " << ec.message());
                           } else {
                               LOG("Connected successfully!");
-                              m_client->send(str);
+                              m_client->doRead();
                           }
                       });
 }
@@ -45,14 +53,16 @@ MainWindow::~MainWindow()
 
 void MainWindow::onSendButtonClicked()
 {
-    if (!m_client) {
+    if (!m_client)
+    {
         LOG("Client is not initialized!");
         return;
     }
 
     // Получение текста из текстового поля
     QString message = ui->m_messageInput->toPlainText();
-    if (message.isEmpty()) {
+    if (message.isEmpty())
+    {
         LOG("Cannot send an empty message!");
         return;
     }
@@ -65,19 +75,11 @@ void MainWindow::onSendButtonClicked()
     ui->m_messageInput->clear();
 }
 
-void MainWindow::onMessageReceived(const std::string &message) {
-    // Отображение полученного сообщения в текстовом поле
-    QString receivedMessage = QString::fromStdString(message);
-    ui->m_messageOutput->append("Server: " + receivedMessage);
-    LOG("Message received: " << message);
-}
-
 void MainWindow::dbgStartServer()
 {
     // Запуск io_context в отдельном потоке
-    std::thread ([]
+    std::thread ([this]
                 {
-                    boost::asio::io_context io_context;
                     try
                     {
                         TcpServer server(io_context, 1500);
@@ -90,3 +92,4 @@ void MainWindow::dbgStartServer()
                 }).detach();
     sleep(1);
 }
+//вме

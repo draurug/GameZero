@@ -6,21 +6,27 @@
 #include <QPushButton>
 #include "TcpClient.h"
 
-namespace Ui {
+namespace Ui
+{
 class MainWindow;
 }
 
-class MainWindow : public QMainWindow {
+class MainWindow : public QMainWindow
+{
     Q_OBJECT
     Ui::MainWindow *ui;
     TcpClient* m_client;
+    std::thread io_thread;
     boost::asio::io_context io_context;
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    static void dbgStartServer();
+    void dbgStartServer();
+signals:
+    void onMessageReceived(const QString &message);
+
 private slots:
-    void onSendButtonClicked(); // Обработчик кнопки Send
-    void onMessageReceived(const std::string& message); // Обработчик полученных сообщений
+    void onSendButtonClicked();
+
 };

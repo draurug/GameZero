@@ -7,12 +7,12 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
 add_library(ServerClient STATIC
-    src/ClientSession.cpp
+    src/Session.cpp
     src/test.cpp
     include/Logs.h
     include/TcpServer.h
     include/TcpClient.h
-    include/ClientSession.h
+    include/Session.h
 )
 
 target_include_directories(ServerClient PRIVATE include)

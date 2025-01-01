@@ -9,21 +9,21 @@ class TcpServer;
 
 using boost::asio::ip::tcp;
 
-class ClientSession : public std::enable_shared_from_this<ClientSession>
+class Session : public std::enable_shared_from_this<Session>
 {
     tcp::socket m_socket;
     std::vector<uint8_t> m_data;
     TcpServer& m_server;
 
 public:
-    explicit ClientSession(tcp::socket socket, TcpServer& server )
+    explicit Session(tcp::socket socket, TcpServer& server )
         : m_socket(std::move(socket)), m_server(server)
     {
         boost::asio::socket_base::linger linger_option(true, 0);
         m_socket.set_option(linger_option);
     }
 
-    ~ClientSession()
+    ~Session()
     {
         LOG("#Client session destroyed");
     };

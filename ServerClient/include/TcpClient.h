@@ -13,10 +13,13 @@ class TcpClient
     std::array<char, 1024> m_data;
     std::vector<char> m_packet;
     std::function<void(const boost::system::error_code&, std::size_t, void* data)> m_handleResponse;
+    std::function<void(const std::string&)> onMessageReceivedCallback;
+
 
 public:
-    TcpClient(boost::asio::io_context& io_context, std::function<void(const boost::system::error_code&, std::size_t, void* data)> handleResponse)
-        : m_resolver(io_context), m_socket(io_context), m_handleResponse(handleResponse)
+    TcpClient(boost::asio::io_context& io_context, std::function<void(const boost::system::error_code&, std::size_t, void* data)> handleResponse,
+std::function<void(const std::string&)> onMessageReceived)
+        : m_resolver(io_context), m_socket(io_context), m_handleResponse(handleResponse),onMessageReceivedCallback(onMessageReceived)
     {}
 
     void connect(const std::string& host, const std::string& port,
@@ -29,8 +32,12 @@ public:
 
     void close()
     {
-        m_socket.close();
+        try
+        {
+            m_socket.close();
+        } catch(...){}
     }
+
 
     void doWrite()
     {
@@ -42,11 +49,14 @@ public:
                 if (ec)
                 {
                     LOG("Write error: " << ec.message());
+                    try
+                    {
+                        m_socket.close();
+                    } catch(...){}
                 }
                 else
                 {
                     LOG("Message sent: Hello, Server!\n");
-                    doRead();
                 }
             });
     }
@@ -60,16 +70,24 @@ public:
                 if (ec)
                 {
                     LOG("Read error: " << ec.message());
+                    return;
                 }
-                else
+
+                // Обработка полученного сообщения
+                std::string message(m_data.data(), length);
+                LOG("Message received from server: " << message);
+
+                // Вызываем пользовательский обработчик сообщения, если он задан
+                if (onMessageReceivedCallback)
                 {
-                    LOG("Message received from server: "
-                        << std::string(m_data.data(), length));
+                    onMessageReceivedCallback(message);
                 }
-//todo must be removed
-                close();
+
+                // Повторяем чтение для следующего сообщения
+                doRead();
             });
     }
+
 
     //send function adding
     void send(std::string message)
@@ -108,7 +126,6 @@ public:
                 else
                 {
                     LOG("Message sent: " << std::string(m_packet.begin() + 2, m_packet.end()));
-                    doRead(); //doRead() обрабатывает ответ от сервера.
                     m_handleResponse(ec, length, m_packet.data());
                 }
             });

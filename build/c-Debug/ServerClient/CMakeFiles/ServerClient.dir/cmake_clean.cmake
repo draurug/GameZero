@@ -1,6 +1,6 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o"
-  "CMakeFiles/ServerClient.dir/src/ClientSession.cpp.o.d"
+  "CMakeFiles/ServerClient.dir/src/Session.cpp.o"
+  "CMakeFiles/ServerClient.dir/src/Session.cpp.o.d"
   "CMakeFiles/ServerClient.dir/src/test.cpp.o"
   "CMakeFiles/ServerClient.dir/src/test.cpp.o.d"
   "libServerClient.a"
