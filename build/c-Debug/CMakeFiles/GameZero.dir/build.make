@@ -131,10 +131,10 @@ GameZero: CMakeFiles/GameZero.dir/GameZero_autogen/mocs_compilation.cpp.o
 GameZero: CMakeFiles/GameZero.dir/main.cpp.o
 GameZero: CMakeFiles/GameZero.dir/MainWindow.cpp.o
 GameZero: CMakeFiles/GameZero.dir/build.make
-GameZero: ServerClient/libServerClient.a
+GameZero: ChatServerClient/ServerClient/libServerClient.a
 GameZero: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.13
 GameZero: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0
-GameZero: ServerClient/libServerClient.a
+GameZero: ChatServerClient/ServerClient/libServerClient.a
 GameZero: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.13
 GameZero: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.13
 GameZero: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0

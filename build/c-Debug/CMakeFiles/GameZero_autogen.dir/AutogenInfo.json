@@ -119,7 +119,7 @@
 	],
 	"MOC_INCLUDES" : 
 	[
-		"/home/draugur/Documents/GameZero/ServerClient/include",
+		"/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include",
 		"/usr/include/x86_64-linux-gnu/qt5",
 		"/usr/include/x86_64-linux-gnu/qt5/QtWidgets",
 		"/usr/include/x86_64-linux-gnu/qt5/QtGui",

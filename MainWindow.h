@@ -7,9 +7,7 @@
 #include "TcpClient.h"
 
 namespace Ui
-{
-class MainWindow;
-}
+{ class MainWindow; }
 
 class MainWindow : public QMainWindow
 {
@@ -23,10 +21,10 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
     void dbgStartServer();
+
 signals:
     void onMessageReceived(const QString &message);
 
 private slots:
     void onSendButtonClicked();
-
 };

@@ -1,0 +1,71 @@
+{
+	"backtrace" : 0,
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : 
+		[
+			"ChatServerClient/CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			}
+		]
+	},
+	"dependencies" : 
+	[
+		{
+			"id" : "ChatServerClient_autogen_timestamp_deps::@476a1f4e6c25929bc10f"
+		}
+	],
+	"id" : "ChatServerClient_autogen::@476a1f4e6c25929bc10f",
+	"isGeneratorProvided" : true,
+	"name" : "ChatServerClient_autogen",
+	"paths" : 
+	{
+		"build" : "ChatServerClient",
+		"source" : "ChatServerClient"
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				1,
+				2
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/c-Debug/ChatServerClient/CMakeFiles/ChatServerClient_autogen",
+			"sourceGroupIndex" : 0
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/c-Debug/ChatServerClient/CMakeFiles/ChatServerClient_autogen.rule",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/c-Debug/ChatServerClient/ChatServerClient_autogen/timestamp.rule",
+			"sourceGroupIndex" : 1
+		}
+	],
+	"type" : "UTILITY"
+}

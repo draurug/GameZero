@@ -1,0 +1,2 @@
+/usr/bin/llvm-ar-18 qc libChatServerClient.a CMakeFiles/ChatServerClient.dir/ChatServerClient_autogen/mocs_compilation.cpp.o
+/usr/bin/llvm-ranlib-18 libChatServerClient.a

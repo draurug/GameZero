@@ -60,7 +60,7 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("/home/draugur/Documents/GameZero/build/c-Debug/ServerClient/cmake_install.cmake")
+  include("/home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/cmake_install.cmake")
 
 endif()
 

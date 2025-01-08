@@ -1,0 +1,181 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-bf3e49a125c0a01a8e14.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						3,
+						4,
+						5
+					]
+				},
+				{
+					"build" : "ChatServerClient",
+					"childIndexes" : 
+					[
+						2
+					],
+					"jsonFile" : "directory-ChatServerClient-Debug-d48c4c17e764587eb346.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.5"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "ChatServerClient",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"build" : "ChatServerClient/ServerClient",
+					"jsonFile" : "directory-ChatServerClient.ServerClient-Debug-4dfae86f7a6cd169b4ff.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.12"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 2,
+					"source" : "ChatServerClient/ServerClient",
+					"targetIndexes" : 
+					[
+						6
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "GameZero",
+					"targetIndexes" : 
+					[
+						3,
+						4,
+						5
+					]
+				},
+				{
+					"childIndexes" : 
+					[
+						2
+					],
+					"directoryIndexes" : 
+					[
+						1
+					],
+					"name" : "ChatServerClient",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				},
+				{
+					"directoryIndexes" : 
+					[
+						2
+					],
+					"name" : "ServerClient",
+					"parentIndex" : 1,
+					"targetIndexes" : 
+					[
+						6
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 1,
+					"id" : "ChatServerClient::@476a1f4e6c25929bc10f",
+					"jsonFile" : "target-ChatServerClient-Debug-6c5504dfc2a67c0bc6b3.json",
+					"name" : "ChatServerClient",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ChatServerClient_autogen::@476a1f4e6c25929bc10f",
+					"jsonFile" : "target-ChatServerClient_autogen-Debug-0d5d445ed1f16b5ad932.json",
+					"name" : "ChatServerClient_autogen",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 1,
+					"id" : "ChatServerClient_autogen_timestamp_deps::@476a1f4e6c25929bc10f",
+					"jsonFile" : "target-ChatServerClient_autogen_timestamp_deps-Debug-ab1634e2accf17da81df.json",
+					"name" : "ChatServerClient_autogen_timestamp_deps",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "GameZero::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GameZero-Debug-776724b86500972b50fd.json",
+					"name" : "GameZero",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "GameZero_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GameZero_autogen-Debug-ed59230705275579b405.json",
+					"name" : "GameZero_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "GameZero_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GameZero_autogen_timestamp_deps-Debug-da2273a8f3ea271eb8fb.json",
+					"name" : "GameZero_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ServerClient::@96c8d70617a200eaa04b",
+					"jsonFile" : "target-ServerClient-Debug-9853ae5abb7a807e77f5.json",
+					"name" : "ServerClient",
+					"projectIndex" : 2
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "/home/draugur/Documents/GameZero/build/c-Debug",
+		"source" : "/home/draugur/Documents/GameZero"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 6
+	}
+}

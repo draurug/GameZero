@@ -349,7 +349,7 @@ CMakeFiles/GameZero.dir/GameZero_autogen/mocs_compilation.cpp.o: \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h \
-  /home/draugur/Documents/GameZero/ServerClient/include/TcpClient.h \
+  /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/TcpClient.h \
   /usr/include/boost/asio.hpp \
   /usr/include/boost/asio/any_completion_executor.hpp \
   /usr/include/boost/asio/detail/config.hpp \
@@ -1412,5 +1412,5 @@ CMakeFiles/GameZero.dir/GameZero_autogen/mocs_compilation.cpp.o: \
   /usr/include/boost/asio/writable_pipe.hpp \
   /usr/include/boost/asio/write_at.hpp \
   /usr/include/boost/asio/impl/write_at.hpp \
-  /home/draugur/Documents/GameZero/ServerClient/include/Logs.h \
+  /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/Logs.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/iostream

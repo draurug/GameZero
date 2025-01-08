@@ -9,7 +9,7 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-add_subdirectory(ServerClient)
+add_subdirectory(ChatServerClient)
 
 find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
@@ -61,7 +61,6 @@ set_target_properties(GameZero PROPERTIES
     MACOSX_BUNDLE TRUE
     WIN32_EXECUTABLE TRUE
 )
-
 include(GNUInstallDirs)
 install(TARGETS GameZero
     BUNDLE DESTINATION .
@@ -69,7 +68,7 @@ install(TARGETS GameZero
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
 
-target_include_directories(GameZero PRIVATE ${CMAKE_SOURCE_DIR}/ServerClient/include)
+target_include_directories(GameZero PRIVATE ${CMAKE_SOURCE_DIR}/ChatServerClient/ServerClient/include)
 # target_include_directories(GameZero PRIVATE ${CMAKE_SOURCE_DIR}/ServerClient/scr)
 target_link_libraries(GameZero PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Boost::system ServerClient)
 

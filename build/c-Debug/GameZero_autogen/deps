@@ -1,9 +1,9 @@
 GameZero_autogen/timestamp: \
 	/home/draugur/Documents/GameZero/CMakeLists.txt \
+	/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/Logs.h \
+	/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/TcpClient.h \
 	/home/draugur/Documents/GameZero/MainWindow.cpp \
 	/home/draugur/Documents/GameZero/MainWindow.h \
-	/home/draugur/Documents/GameZero/ServerClient/include/Logs.h \
-	/home/draugur/Documents/GameZero/ServerClient/include/TcpClient.h \
 	/home/draugur/Documents/GameZero/build/c-Debug/.qtc/package-manager/auto-setup.cmake \
 	/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake \
 	/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/3.28.3/CMakeSystem.cmake \
