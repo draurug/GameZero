@@ -5,8 +5,8 @@
 #include <vector>
 #include <string>
 #include "Logs.h"
-class TcpServer;
 
+class TcpServer;
 using boost::asio::ip::tcp;
 
 class Session : public std::enable_shared_from_this<Session>
@@ -26,7 +26,7 @@ public:
     ~Session()
     {
         LOG("#Client session destroyed");
-    };
+    }
 
     void start()
     {

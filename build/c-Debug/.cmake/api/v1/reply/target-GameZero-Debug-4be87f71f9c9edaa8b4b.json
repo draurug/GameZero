@@ -112,6 +112,12 @@
 				"file" : 0,
 				"line" : 71,
 				"parent" : 0
+			},
+			{
+				"command" : 6,
+				"file" : 0,
+				"line" : 72,
+				"parent" : 0
 			}
 		]
 	},
@@ -160,6 +166,10 @@
 				{
 					"backtrace" : 15,
 					"path" : "/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include"
+				},
+				{
+					"backtrace" : 16,
+					"path" : "/home/draugur/Documents/GameZero/ChatServerClient"
 				},
 				{
 					"backtrace" : 4,

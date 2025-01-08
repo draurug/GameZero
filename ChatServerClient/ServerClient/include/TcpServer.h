@@ -1,4 +1,5 @@
 #pragma once
+
 #include "Logs.h"
 #include "Session.h"
 #include <boost/asio.hpp>
@@ -19,6 +20,8 @@ public:
         doAccept();
     }
 
+    virtual ~TcpServer()=default;
+
     void onPacketReceived(boost::system::error_code ec, std::size_t length, uint8_t* data, std::shared_ptr<Session> session)
     {
         if(!ec)
@@ -35,8 +38,7 @@ public:
         }
     }
 
-    virtual void handlePacket(uint8_t* data, std::size_t length, std::shared_ptr<Session> session)
-    {};
+    virtual void handlePacket(uint8_t* data, std::size_t length, std::shared_ptr<Session> session)=0;
 
 private:
     void doAccept()

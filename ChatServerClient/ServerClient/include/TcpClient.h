@@ -1,3 +1,5 @@
+#pragma once
+
 #include <boost/asio.hpp>
 #include <string>
 #include "Logs.h"
@@ -15,16 +17,17 @@ protected:
     std::function<void(const std::string&)> onMessageReceivedCallback;
 
 public:
-    TcpClient(boost::asio::io_context& io_context, std::function<void(const boost::system::error_code&, std::size_t, void* data)> handleResponse,
-                std::function<void(const std::string&)> onMessageReceived)
-        : m_resolver(io_context), m_socket(io_context), m_handleResponse(handleResponse),onMessageReceivedCallback(onMessageReceived)
-    {}
+    TcpClient(boost::asio::io_context& io_context,
+              std::function<void(const boost::system::error_code&, std::size_t, void* data)> handleResponse,
+              std::function<void(const std::string&)> onMessageReceived)
+        : m_resolver(io_context), m_socket(io_context), m_handleResponse(handleResponse),onMessageReceivedCallback(onMessageReceived){}
+
+    virtual ~TcpClient()=default;
 
     void connect(const std::string& host, const std::string& port,
-                const std::function<void(const boost::system::error_code& ec, const tcp::endpoint&)> &func)
+                 const std::function<void(const boost::system::error_code& ec, const tcp::endpoint&)> &func)
     {
         auto endpoints = m_resolver.resolve(host, port);
-
         boost::asio::async_connect( m_socket, endpoints, func );
     }
 
@@ -33,29 +36,8 @@ public:
         try
         {
             m_socket.close();
-        } catch(...){}
-    }
-
-    void doWrite()
-    {
-        std::string message = "Hello, Server";
-        boost::asio::async_write(
-            m_socket, boost::asio::buffer(message),
-            [this](const boost::system::error_code& ec, std::size_t /*length*/)
-            {
-                if (ec)
-                {
-                    LOG("Write error: " << ec.message());
-                    try
-                    {
-                        m_socket.close();
-                    } catch(...){}
-                }
-                else
-                {
-                    LOG("Message sent: Hello, Server!\n");
-                }
-            });
+        }
+        catch(...){}
     }
 
     void doRead()
@@ -74,33 +56,24 @@ public:
                 std::string message(m_data.data(), length);
                 LOG("Message received from server: " << message);
 
-                // Вызываем пользовательский обработчик сообщения, если он задан
+                // Вызываем пользовательский обработчик сообщения
                 if (onMessageReceivedCallback)
-                {
-                    onMessageReceivedCallback(message);
-                }
+                { onMessageReceivedCallback(message); }
 
                 // Повторяем чтение для следующего сообщения
                 doRead();
             });
     }
 
+    virtual void handlePacket(uint8_t* data, std::size_t length)=0;
+
     //send function adding
     void send(std::string message)
     {
-        // union
-        //{
-        //     uint16_t length = 10;
-        //     uint8_t bytes[2];
-        // };
-
-        // LOG(int(bytes[0]));
-        // LOG(int(bytes[1]));
-        // exit(0);
-
-        uint16_t length = static_cast<uint16_t>(message.size());
         // Формирование пакета с 2 байтами длины в начале
-        m_packet.reserve(2 + message.size() );
+        uint16_t length = static_cast<uint16_t>(message.size());
+        //m_packet.clear();
+        m_packet.reserve(2 + message.size());
 
         // Добавляем длину пакета в начало (little-endian)
         m_packet.push_back(static_cast<char>((length) & 0xFF));
@@ -126,7 +99,4 @@ public:
                 }
             });
     }
-
-    virtual void handlePacket(uint8_t* data, std::size_t length){};
-
 };

@@ -60,6 +60,10 @@ ChatServerClient/ChatServerClient_autogen/timestamp: /home/draugur/Documents/Gam
   /usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake \
   /usr/share/cmake-3.28/Modules/FindPackageMessage.cmake
 
+ChatServerClient/CMakeFiles/ChatServerClient.dir/ChatServerClient_autogen/mocs_compilation.cpp.o: ChatServerClient/ChatServerClient_autogen/mocs_compilation.cpp
+
+
+ChatServerClient/ChatServerClient_autogen/mocs_compilation.cpp:
 
 /usr/share/cmake-3.28/Modules/FindPackageHandleStandardArgs.cmake:
 

@@ -93,21 +93,22 @@
 			"sourceIndexes" : 
 			[
 				1,
-				2
+				2,
+				3
 			]
 		},
 		{
 			"name" : "",
 			"sourceIndexes" : 
 			[
-				3
+				4
 			]
 		},
 		{
 			"name" : "CMake Rules",
 			"sourceIndexes" : 
 			[
-				4
+				5
 			]
 		}
 	],
@@ -123,6 +124,11 @@
 		{
 			"backtrace" : 1,
 			"path" : "ChatServerClient/ChatServer.h",
+			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 1,
+			"path" : "ChatServerClient/ChatClient.h",
 			"sourceGroupIndex" : 1
 		},
 		{

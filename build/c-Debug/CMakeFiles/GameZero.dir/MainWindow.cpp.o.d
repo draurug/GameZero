@@ -349,6 +349,7 @@ CMakeFiles/GameZero.dir/MainWindow.cpp.o: \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h \
+  /home/draugur/Documents/GameZero/ChatServerClient/ChatClient.h \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/TcpClient.h \
   /usr/include/boost/asio.hpp \
   /usr/include/boost/asio/any_completion_executor.hpp \
@@ -1414,6 +1415,7 @@ CMakeFiles/GameZero.dir/MainWindow.cpp.o: \
   /usr/include/boost/asio/impl/write_at.hpp \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/Logs.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/iostream \
+  /home/draugur/Documents/GameZero/ChatServerClient/MessageType.h \
   /home/draugur/Documents/GameZero/build/c-Debug/GameZero_autogen/include/ui_MainWindow.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QAction \
@@ -1427,6 +1429,13 @@ CMakeFiles/GameZero.dir/MainWindow.cpp.o: \
   /usr/include/x86_64-linux-gnu/qt5/QtGui/qguiapplication.h \
   /usr/include/x86_64-linux-gnu/qt5/QtGui/qinputmethod.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qlocale.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QFormLayout \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qformlayout.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLayout \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayout.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayoutitem.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgridlayout.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenu \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmenu.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMenuBar \
@@ -1436,6 +1445,7 @@ CMakeFiles/GameZero.dir/MainWindow.cpp.o: \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/TcpServer.h \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/Session.h \
+  /home/draugur/Documents/GameZero/ChatServerClient/ChatServer.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMessageBox \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmessagebox.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \

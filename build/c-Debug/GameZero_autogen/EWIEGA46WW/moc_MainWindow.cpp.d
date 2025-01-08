@@ -1,5 +1,7 @@
 /home/draugur/Documents/GameZero/build/c-Debug/GameZero_autogen/EWIEGA46WW/moc_MainWindow.cpp: /home/draugur/Documents/GameZero/MainWindow.h \
   /home/draugur/Documents/GameZero/build/c-Debug/GameZero_autogen/moc_predefs.h \
+  /home/draugur/Documents/GameZero/ChatServerClient/ChatClient.h \
+  /home/draugur/Documents/GameZero/ChatServerClient/MessageType.h \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/Logs.h \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/TcpClient.h \
   /usr/include/alloca.h \

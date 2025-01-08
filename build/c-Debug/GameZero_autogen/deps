@@ -1,5 +1,7 @@
 GameZero_autogen/timestamp: \
 	/home/draugur/Documents/GameZero/CMakeLists.txt \
+	/home/draugur/Documents/GameZero/ChatServerClient/ChatClient.h \
+	/home/draugur/Documents/GameZero/ChatServerClient/MessageType.h \
 	/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/Logs.h \
 	/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/TcpClient.h \
 	/home/draugur/Documents/GameZero/MainWindow.cpp \

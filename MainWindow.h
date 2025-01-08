@@ -4,7 +4,7 @@
 #include <QString>
 #include <QTextEdit>
 #include <QPushButton>
-#include "TcpClient.h"
+#include "ChatClient.h"
 
 namespace Ui
 { class MainWindow; }
@@ -13,7 +13,7 @@ class MainWindow : public QMainWindow
 {
     Q_OBJECT
     Ui::MainWindow *ui;
-    TcpClient* m_client;
+    ChatClient* m_client;
     std::thread io_thread;
     boost::asio::io_context io_context;
 

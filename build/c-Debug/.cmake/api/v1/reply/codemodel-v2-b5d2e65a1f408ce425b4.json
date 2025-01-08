@@ -118,7 +118,7 @@
 				{
 					"directoryIndex" : 1,
 					"id" : "ChatServerClient::@476a1f4e6c25929bc10f",
-					"jsonFile" : "target-ChatServerClient-Debug-6c5504dfc2a67c0bc6b3.json",
+					"jsonFile" : "target-ChatServerClient-Debug-5979a81d1e0bbc54792c.json",
 					"name" : "ChatServerClient",
 					"projectIndex" : 1
 				},
@@ -139,7 +139,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "GameZero::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-GameZero-Debug-776724b86500972b50fd.json",
+					"jsonFile" : "target-GameZero-Debug-4be87f71f9c9edaa8b4b.json",
 					"name" : "GameZero",
 					"projectIndex" : 0
 				},

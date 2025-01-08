@@ -1,7 +1,10 @@
 #include "MainWindow.h"
 #include "ui_MainWindow.h"
 #include "TcpServer.h"
+#include "ChatClient.h"
+#include "ChatServer.h"
 #include "Logs.h"
+
 #include <QMessageBox>
 #include <QDebug>
 #include <thread>
@@ -13,24 +16,24 @@ MainWindow::MainWindow(QWidget *parent)
     dbgStartServer();
 
     // Настройка кнопки Send
-    connect(ui->m_sendButton, &QPushButton::clicked, this, &MainWindow::onSendButtonClicked);
-    connect(this, &MainWindow::onMessageReceived, ui->m_messageOutput, &QTextEdit::append, Qt::QueuedConnection);
+    connect( ui->m_sendButton, &QPushButton::clicked, this, &MainWindow::onSendButtonClicked );
+    connect( this, &MainWindow::onMessageReceived, ui->m_messageOutput, &QTextEdit::append, Qt::QueuedConnection );
 
     // Инициализация TcpClient
-    m_client = new TcpClient(io_context,
-                             [this](const boost::system::error_code& ec, std::size_t, void* data)
-                             {
-                                 if (ec) {
-                                     LOG("Send error: " << ec.message());
-                                 } else  {
-                                     LOG("Message sent successfully!");
-                                 }
-                             },
-                             [this](const std::string& message)
-                             {
-                                 LOG("onMessageReceived used successfully?");
-                                 emit this->onMessageReceived(QString::fromStdString(message));
-                             });
+    m_client = new ChatClient(io_context,
+                              [this](const boost::system::error_code& ec, std::size_t, void* data)
+                              {
+                                  if (ec) {
+                                      LOG("Send error: " << ec.message());
+                                  } else  {
+                                      LOG("Message sent successfully!");
+                                  }
+                              },
+                              [this](const std::string& message)
+                              {
+                                  LOG("onMessageReceived used successfully?");
+                                  emit this->onMessageReceived(QString::fromStdString(message));
+                              });
 
     // Установка соединения с сервером
     m_client->connect("127.0.0.1", "1500",
@@ -82,7 +85,7 @@ void MainWindow::dbgStartServer()
                 {
                     try
                     {
-                        TcpServer server(io_context, 1500);
+                        ChatServer server(io_context, 1500);
                         io_context.run();
                     }
                     catch (const std::exception& e)
@@ -92,6 +95,7 @@ void MainWindow::dbgStartServer()
                 }).detach();
     sleep(1);
 }
+
 //todo:
 // 1) Клиент здоровается с сервером: {0,<name>} -> {101}
 // 2) Клиент requests server about active Clients: {1} -> {102, <clientName1>, <clientName2>,...}
@@ -99,3 +103,7 @@ void MainWindow::dbgStartServer()
 // 3) Client send message to <clientName>: {2,<clientName>,<text>}
 // 4) Server send message to Client : -> {103,<fromClientName>,<text>}
 // 5) Клиент прощается с сервером: {3}
+
+//user interface
+//1,2)settingsDialog with address & port (sendHello automatic, than getuserlist)
+//3,4,5)choosing dialog with active user and sending some messages

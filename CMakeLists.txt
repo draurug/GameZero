@@ -69,7 +69,7 @@ install(TARGETS GameZero
 )
 
 target_include_directories(GameZero PRIVATE ${CMAKE_SOURCE_DIR}/ChatServerClient/ServerClient/include)
-# target_include_directories(GameZero PRIVATE ${CMAKE_SOURCE_DIR}/ServerClient/scr)
+ target_include_directories(GameZero PRIVATE ${CMAKE_SOURCE_DIR}/ChatServerClient)
 target_link_libraries(GameZero PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Boost::system ServerClient)
 
 if(QT_VERSION_MAJOR EQUAL 6)

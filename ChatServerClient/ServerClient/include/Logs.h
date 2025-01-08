@@ -1,8 +1,9 @@
 #pragma once
+
 #include <iostream>
 #include <mutex>
-inline std::mutex gLogMutex;
 
+inline std::mutex gLogMutex;
 
 #ifndef LOG
     #define LOG( expr ) \
