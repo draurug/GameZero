@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "" "ChatServerClient/ServerClient/ServerClient_autogen/timestamp" "custom" "ChatServerClient/ServerClient/ServerClient_autogen/deps"
+  "/home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/ServerClient_autogen/mocs_compilation.cpp" "ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o" "gcc" "ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o.d"
   "/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/src/Session.cpp" "ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/Session.cpp.o" "gcc" "ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/Session.cpp.o.d"
   "/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/src/test.cpp" "ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o" "gcc" "ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o.d"
   )

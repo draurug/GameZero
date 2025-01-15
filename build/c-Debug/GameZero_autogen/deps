@@ -6,6 +6,10 @@ GameZero_autogen/timestamp: \
 	/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/TcpClient.h \
 	/home/draugur/Documents/GameZero/MainWindow.cpp \
 	/home/draugur/Documents/GameZero/MainWindow.h \
+	/home/draugur/Documents/GameZero/Settings.cpp \
+	/home/draugur/Documents/GameZero/Settings.h \
+	/home/draugur/Documents/GameZero/SettingsDialog.cpp \
+	/home/draugur/Documents/GameZero/SettingsDialog.h \
 	/home/draugur/Documents/GameZero/build/c-Debug/.qtc/package-manager/auto-setup.cmake \
 	/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/3.28.3/CMakeCXXCompiler.cmake \
 	/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles/3.28.3/CMakeSystem.cmake \
@@ -1369,6 +1373,7 @@ GameZero_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
 	/usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
 	/usr/include/x86_64-linux-gnu/gnu/stubs.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtCore/QSettings \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
@@ -1408,6 +1413,7 @@ GameZero_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qrefcount.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qregexp.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qscopedpointer.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtCore/qsettings.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qshareddata.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h \
@@ -1454,11 +1460,13 @@ GameZero_autogen/timestamp: \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qtguiglobal.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qtransform.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtGui/qwindowdefs.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDialog \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QMainWindow \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QPushButton \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/QTextEdit \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractbutton.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qabstractscrollarea.h \
+	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qmainwindow.h \
 	/usr/include/x86_64-linux-gnu/qt5/QtWidgets/qpushbutton.h \
@@ -1565,4 +1573,5 @@ GameZero_autogen/timestamp: \
 	/usr/share/cmake-3.28/Modules/Platform/Linux.cmake \
 	/usr/share/cmake-3.28/Modules/Platform/UnixPaths.cmake \
 	/home/draugur/Documents/GameZero/MainWindow.ui \
+	/home/draugur/Documents/GameZero/SettingsDialog.ui \
 	/usr/bin/cmake

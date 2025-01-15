@@ -1415,4 +1415,11 @@ CMakeFiles/GameZero.dir/GameZero_autogen/mocs_compilation.cpp.o: \
   /usr/include/boost/asio/impl/write_at.hpp \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/Logs.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/iostream \
-  /home/draugur/Documents/GameZero/ChatServerClient/MessageType.h
+  /home/draugur/Documents/GameZero/ChatServerClient/MessageType.h \
+  /home/draugur/Documents/GameZero/build/c-Debug/GameZero_autogen/EWIEGA46WW/../../../../Settings.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSettings \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsettings.h \
+  /home/draugur/Documents/GameZero/build/c-Debug/GameZero_autogen/EWIEGA46WW/moc_SettingsDialog.cpp \
+  /home/draugur/Documents/GameZero/build/c-Debug/GameZero_autogen/EWIEGA46WW/../../../../SettingsDialog.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDialog \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialog.h

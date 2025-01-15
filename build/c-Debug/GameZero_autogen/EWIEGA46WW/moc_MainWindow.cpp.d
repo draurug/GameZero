@@ -4,6 +4,7 @@
   /home/draugur/Documents/GameZero/ChatServerClient/MessageType.h \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/Logs.h \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/TcpClient.h \
+  /home/draugur/Documents/GameZero/Settings.h \
   /usr/include/alloca.h \
   /usr/include/arpa/inet.h \
   /usr/include/asm-generic/bitsperlong.h \
@@ -1362,6 +1363,7 @@
   /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs-64.h \
   /usr/include/x86_64-linux-gnu/gnu/stubs.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSettings \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/QString \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qalgorithms.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qarraydata.h \
@@ -1401,6 +1403,7 @@
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qrefcount.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qregexp.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qscopedpointer.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsettings.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qshareddata.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qsharedpointer_impl.h \

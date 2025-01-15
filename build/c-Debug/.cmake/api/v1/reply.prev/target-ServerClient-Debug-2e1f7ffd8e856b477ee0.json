@@ -34,19 +34,19 @@
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 22,
+				"line" : 23,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
-				"line" : 28,
+				"line" : 29,
 				"parent" : 0
 			},
 			{
 				"command" : 3,
 				"file" : 0,
-				"line" : 18,
+				"line" : 19,
 				"parent" : 0
 			}
 		]
@@ -86,6 +86,10 @@
 			"includes" : 
 			[
 				{
+					"backtrace" : 0,
+					"path" : "/home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/ServerClient_autogen/include"
+				},
+				{
 					"backtrace" : 4,
 					"path" : "/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include"
 				}
@@ -102,8 +106,19 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				1,
+				2
 			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"id" : "ServerClient_autogen_timestamp_deps::@96c8d70617a200eaa04b"
+		},
+		{
+			"backtrace" : 0,
+			"id" : "ServerClient_autogen::@96c8d70617a200eaa04b"
 		}
 	],
 	"id" : "ServerClient::@96c8d70617a200eaa04b",
@@ -121,22 +136,44 @@
 			"sourceIndexes" : 
 			[
 				0,
-				1
+				1,
+				2
 			]
 		},
 		{
 			"name" : "Header Files",
 			"sourceIndexes" : 
 			[
-				2,
 				3,
 				4,
-				5
+				5,
+				6
+			]
+		},
+		{
+			"name" : "",
+			"sourceIndexes" : 
+			[
+				7
+			]
+		},
+		{
+			"name" : "CMake Rules",
+			"sourceIndexes" : 
+			[
+				8
 			]
 		}
 	],
 	"sources" : 
 	[
+		{
+			"backtrace" : 0,
+			"compileGroupIndex" : 0,
+			"isGenerated" : true,
+			"path" : "build/c-Debug/ChatServerClient/ServerClient/ServerClient_autogen/mocs_compilation.cpp",
+			"sourceGroupIndex" : 0
+		},
 		{
 			"backtrace" : 1,
 			"compileGroupIndex" : 0,
@@ -168,6 +205,18 @@
 			"backtrace" : 1,
 			"path" : "ChatServerClient/ServerClient/include/Session.h",
 			"sourceGroupIndex" : 1
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/c-Debug/ChatServerClient/ServerClient/ServerClient_autogen/timestamp",
+			"sourceGroupIndex" : 2
+		},
+		{
+			"backtrace" : 0,
+			"isGenerated" : true,
+			"path" : "build/c-Debug/ChatServerClient/ServerClient/ServerClient_autogen/timestamp.rule",
+			"sourceGroupIndex" : 3
 		}
 	],
 	"type" : "STATIC_LIBRARY"

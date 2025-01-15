@@ -1416,6 +1416,9 @@ CMakeFiles/GameZero.dir/MainWindow.cpp.o: \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/Logs.h \
   /usr/bin/../lib/gcc/x86_64-linux-gnu/13/../../../../include/c++/13/iostream \
   /home/draugur/Documents/GameZero/ChatServerClient/MessageType.h \
+  /home/draugur/Documents/GameZero/Settings.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/QSettings \
+  /usr/include/x86_64-linux-gnu/qt5/QtCore/qsettings.h \
   /home/draugur/Documents/GameZero/build/c-Debug/GameZero_autogen/include/ui_MainWindow.h \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/QVariant \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QAction \

@@ -78,10 +78,22 @@ private:
     // Отправка пакета через TCP-сокет.
     void sendPacket(const std::vector<uint8_t>& packet)
     {
+        assert(packet.size() <= 0xFFFF);
+
+        // Создаём буфер с размером пакета и данными
+        std::vector<uint8_t>* fullPacketPtr = new std::vector<uint8_t> (2 + packet.size());
+        auto & fullPacket = * fullPacketPtr;
+
+        fullPacket[0] = packet.size() & 0xFF;           // Младший байт размера
+        fullPacket[1] = (packet.size() >> 8) & 0xFF;    // Старший байт размера
+        std::copy(packet.begin(), packet.end(), fullPacket.begin() + 2);
+
+        // Асинхронная отправка полного пакета
         boost::asio::async_write(
-            m_socket, boost::asio::buffer(packet),
-            [](const boost::system::error_code& ec, std::size_t /*length*/)
+            m_socket, boost::asio::buffer(fullPacket),
+            [fullPacketPtr](const boost::system::error_code& ec, std::size_t /*length*/)
             {
+                delete fullPacketPtr;
                 if (ec)
                 {
                     LOG("Error sending packet: " << ec.message());
@@ -92,4 +104,5 @@ private:
                 }
             });
     }
+
 };

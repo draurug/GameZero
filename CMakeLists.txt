@@ -17,9 +17,15 @@ find_package(Boost REQUIRED COMPONENTS system)
 
 set(PROJECT_SOURCES
         main.cpp
+        Settings.cpp
         MainWindow.cpp
         MainWindow.h
         MainWindow.ui
+        Settings.h
+        SettingsDialog.cpp
+        SettingsDialog.h
+        SettingsDialog.ui
+
 )
 
 if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)

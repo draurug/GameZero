@@ -23,3 +23,5 @@
 /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/CMakeFiles/install.dir
 /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/CMakeFiles/install/local.dir
 /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/CMakeFiles/install/strip.dir
+/home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/CMakeFiles/ServerClient_autogen_timestamp_deps.dir
+/home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/CMakeFiles/ServerClient_autogen.dir

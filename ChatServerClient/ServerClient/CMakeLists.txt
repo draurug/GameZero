@@ -9,6 +9,7 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 add_library(ServerClient STATIC
     src/Session.cpp
     src/test.cpp
+    
     include/Logs.h
     include/TcpServer.h
     include/TcpClient.h
@@ -26,6 +27,9 @@ endif()
 
 find_package(Boost REQUIRED COMPONENTS system)
 target_link_libraries(ServerClient PRIVATE Boost::system)
+
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 if (UNIX AND NOT APPLE)
     target_link_libraries(ServerClient PRIVATE pthread)

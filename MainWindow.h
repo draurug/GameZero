@@ -5,6 +5,7 @@
 #include <QTextEdit>
 #include <QPushButton>
 #include "ChatClient.h"
+#include "Settings.h"
 
 namespace Ui
 { class MainWindow; }
@@ -20,6 +21,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    void initClient(const Settings& settings);
     void dbgStartServer();
 
 signals:

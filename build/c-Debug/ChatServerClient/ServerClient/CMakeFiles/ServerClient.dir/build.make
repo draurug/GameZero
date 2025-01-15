@@ -69,10 +69,31 @@ include ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/progress.make
 # Include the compile flags for this target's objects.
 include ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/flags.make
 
+ChatServerClient/ServerClient/ServerClient_autogen/timestamp: /usr/lib/qt5/bin/moc
+ChatServerClient/ServerClient/ServerClient_autogen/timestamp: /usr/lib/qt5/bin/uic
+ChatServerClient/ServerClient/ServerClient_autogen/timestamp: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --blue --bold --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Automatic MOC and UIC for target ServerClient"
+	cd /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient && /usr/bin/cmake -E cmake_autogen /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/CMakeFiles/ServerClient_autogen.dir/AutogenInfo.json Debug
+	cd /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient && /usr/bin/cmake -E touch /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/ServerClient_autogen/timestamp
+
+ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/flags.make
+ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o: ChatServerClient/ServerClient/ServerClient_autogen/mocs_compilation.cpp
+ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o"
+	cd /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o -MF CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o -c /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/ServerClient_autogen/mocs_compilation.cpp
+
+ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.i"
+	cd /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/ServerClient_autogen/mocs_compilation.cpp > CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.i
+
+ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.s"
+	cd /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/ServerClient_autogen/mocs_compilation.cpp -o CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.s
+
 ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/Session.cpp.o: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/flags.make
 ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/Session.cpp.o: /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/src/Session.cpp
 ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/Session.cpp.o: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/Session.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/Session.cpp.o"
 	cd /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/Session.cpp.o -MF CMakeFiles/ServerClient.dir/src/Session.cpp.o.d -o CMakeFiles/ServerClient.dir/src/Session.cpp.o -c /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/src/Session.cpp
 
 ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/Session.cpp.i: cmake_force
@@ -86,7 +107,7 @@ ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/Session.cpp.s: cma
 ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/flags.make
 ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o: /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/src/test.cpp
 ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o"
 	cd /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient && /usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o -MF CMakeFiles/ServerClient.dir/src/test.cpp.o.d -o CMakeFiles/ServerClient.dir/src/test.cpp.o -c /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/src/test.cpp
 
 ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.i: cmake_force
@@ -99,17 +120,19 @@ ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.s: cmake_
 
 # Object files for target ServerClient
 ServerClient_OBJECTS = \
+"CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/ServerClient.dir/src/Session.cpp.o" \
 "CMakeFiles/ServerClient.dir/src/test.cpp.o"
 
 # External object files for target ServerClient
 ServerClient_EXTERNAL_OBJECTS =
 
+ChatServerClient/ServerClient/libServerClient.a: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o
 ChatServerClient/ServerClient/libServerClient.a: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/Session.cpp.o
 ChatServerClient/ServerClient/libServerClient.a: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/src/test.cpp.o
 ChatServerClient/ServerClient/libServerClient.a: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/build.make
 ChatServerClient/ServerClient/libServerClient.a: ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libServerClient.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX static library libServerClient.a"
 	cd /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient && $(CMAKE_COMMAND) -P CMakeFiles/ServerClient.dir/cmake_clean_target.cmake
 	cd /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ServerClient.dir/link.txt --verbose=$(VERBOSE)
 
@@ -121,7 +144,7 @@ ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/clean:
 	cd /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient && $(CMAKE_COMMAND) -P CMakeFiles/ServerClient.dir/cmake_clean.cmake
 .PHONY : ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/clean
 
-ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/depend:
+ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/depend: ChatServerClient/ServerClient/ServerClient_autogen/timestamp
 	cd /home/draugur/Documents/GameZero/build/c-Debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/draugur/Documents/GameZero /home/draugur/Documents/GameZero/ChatServerClient/ServerClient /home/draugur/Documents/GameZero/build/c-Debug /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient /home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/DependInfo.cmake "--color=$(COLOR)"
 .PHONY : ChatServerClient/ServerClient/CMakeFiles/ServerClient.dir/depend
 

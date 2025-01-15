@@ -97,6 +97,18 @@
 			"MU",
 			"EWIEGA46WW/moc_MainWindow.cpp",
 			null
+		],
+		[
+			"/home/draugur/Documents/GameZero/Settings.h",
+			"MU",
+			"EWIEGA46WW/moc_Settings.cpp",
+			null
+		],
+		[
+			"/home/draugur/Documents/GameZero/SettingsDialog.h",
+			"MU",
+			"EWIEGA46WW/moc_SettingsDialog.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -160,6 +172,8 @@
 	"SOURCES" : 
 	[
 		[ "/home/draugur/Documents/GameZero/MainWindow.cpp", "MU", null ],
+		[ "/home/draugur/Documents/GameZero/Settings.cpp", "MU", null ],
+		[ "/home/draugur/Documents/GameZero/SettingsDialog.cpp", "MU", null ],
 		[ "/home/draugur/Documents/GameZero/main.cpp", "MU", null ]
 	],
 	"UIC_OPTIONS" : [],

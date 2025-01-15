@@ -12,7 +12,7 @@ using boost::asio::ip::tcp;
 class Session : public std::enable_shared_from_this<Session>
 {
     tcp::socket m_socket;
-    std::vector<uint8_t> m_data;
+    std::vector<uint8_t> m_packet;
     TcpServer& m_server;
 
 public:
@@ -30,11 +30,13 @@ public:
 
     void start()
     {
+        LOG("#Start");
         doRead();
     }
 
     void send(const std::string& message);
     void doRead();
+    void doReadPacket(std::size_t packetLength);
 private:
 
     void doWrite(std::size_t length);

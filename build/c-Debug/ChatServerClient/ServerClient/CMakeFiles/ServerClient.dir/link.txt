@@ -1,2 +1,2 @@
-/usr/bin/llvm-ar-18 qc libServerClient.a CMakeFiles/ServerClient.dir/src/Session.cpp.o CMakeFiles/ServerClient.dir/src/test.cpp.o
+/usr/bin/llvm-ar-18 qc libServerClient.a CMakeFiles/ServerClient.dir/ServerClient_autogen/mocs_compilation.cpp.o CMakeFiles/ServerClient.dir/src/Session.cpp.o CMakeFiles/ServerClient.dir/src/test.cpp.o
 /usr/bin/llvm-ranlib-18 libServerClient.a

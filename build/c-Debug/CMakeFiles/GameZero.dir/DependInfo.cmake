@@ -11,6 +11,8 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "" "GameZero_autogen/timestamp" "custom" "GameZero_autogen/deps"
   "/home/draugur/Documents/GameZero/build/c-Debug/GameZero_autogen/mocs_compilation.cpp" "CMakeFiles/GameZero.dir/GameZero_autogen/mocs_compilation.cpp.o" "gcc" "CMakeFiles/GameZero.dir/GameZero_autogen/mocs_compilation.cpp.o.d"
   "/home/draugur/Documents/GameZero/MainWindow.cpp" "CMakeFiles/GameZero.dir/MainWindow.cpp.o" "gcc" "CMakeFiles/GameZero.dir/MainWindow.cpp.o.d"
+  "/home/draugur/Documents/GameZero/Settings.cpp" "CMakeFiles/GameZero.dir/Settings.cpp.o" "gcc" "CMakeFiles/GameZero.dir/Settings.cpp.o.d"
+  "/home/draugur/Documents/GameZero/SettingsDialog.cpp" "CMakeFiles/GameZero.dir/SettingsDialog.cpp.o" "gcc" "CMakeFiles/GameZero.dir/SettingsDialog.cpp.o.d"
   "/home/draugur/Documents/GameZero/main.cpp" "CMakeFiles/GameZero.dir/main.cpp.o" "gcc" "CMakeFiles/GameZero.dir/main.cpp.o.d"
   )
 

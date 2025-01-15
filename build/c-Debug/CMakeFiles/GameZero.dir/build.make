@@ -104,10 +104,24 @@ CMakeFiles/GameZero.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GameZero.dir/main.cpp.s"
 	/usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/draugur/Documents/GameZero/main.cpp -o CMakeFiles/GameZero.dir/main.cpp.s
 
+CMakeFiles/GameZero.dir/Settings.cpp.o: CMakeFiles/GameZero.dir/flags.make
+CMakeFiles/GameZero.dir/Settings.cpp.o: /home/draugur/Documents/GameZero/Settings.cpp
+CMakeFiles/GameZero.dir/Settings.cpp.o: CMakeFiles/GameZero.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GameZero.dir/Settings.cpp.o"
+	/usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GameZero.dir/Settings.cpp.o -MF CMakeFiles/GameZero.dir/Settings.cpp.o.d -o CMakeFiles/GameZero.dir/Settings.cpp.o -c /home/draugur/Documents/GameZero/Settings.cpp
+
+CMakeFiles/GameZero.dir/Settings.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GameZero.dir/Settings.cpp.i"
+	/usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/draugur/Documents/GameZero/Settings.cpp > CMakeFiles/GameZero.dir/Settings.cpp.i
+
+CMakeFiles/GameZero.dir/Settings.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GameZero.dir/Settings.cpp.s"
+	/usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/draugur/Documents/GameZero/Settings.cpp -o CMakeFiles/GameZero.dir/Settings.cpp.s
+
 CMakeFiles/GameZero.dir/MainWindow.cpp.o: CMakeFiles/GameZero.dir/flags.make
 CMakeFiles/GameZero.dir/MainWindow.cpp.o: /home/draugur/Documents/GameZero/MainWindow.cpp
 CMakeFiles/GameZero.dir/MainWindow.cpp.o: CMakeFiles/GameZero.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/GameZero.dir/MainWindow.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/GameZero.dir/MainWindow.cpp.o"
 	/usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GameZero.dir/MainWindow.cpp.o -MF CMakeFiles/GameZero.dir/MainWindow.cpp.o.d -o CMakeFiles/GameZero.dir/MainWindow.cpp.o -c /home/draugur/Documents/GameZero/MainWindow.cpp
 
 CMakeFiles/GameZero.dir/MainWindow.cpp.i: cmake_force
@@ -118,18 +132,36 @@ CMakeFiles/GameZero.dir/MainWindow.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GameZero.dir/MainWindow.cpp.s"
 	/usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/draugur/Documents/GameZero/MainWindow.cpp -o CMakeFiles/GameZero.dir/MainWindow.cpp.s
 
+CMakeFiles/GameZero.dir/SettingsDialog.cpp.o: CMakeFiles/GameZero.dir/flags.make
+CMakeFiles/GameZero.dir/SettingsDialog.cpp.o: /home/draugur/Documents/GameZero/SettingsDialog.cpp
+CMakeFiles/GameZero.dir/SettingsDialog.cpp.o: CMakeFiles/GameZero.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/GameZero.dir/SettingsDialog.cpp.o"
+	/usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/GameZero.dir/SettingsDialog.cpp.o -MF CMakeFiles/GameZero.dir/SettingsDialog.cpp.o.d -o CMakeFiles/GameZero.dir/SettingsDialog.cpp.o -c /home/draugur/Documents/GameZero/SettingsDialog.cpp
+
+CMakeFiles/GameZero.dir/SettingsDialog.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/GameZero.dir/SettingsDialog.cpp.i"
+	/usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/draugur/Documents/GameZero/SettingsDialog.cpp > CMakeFiles/GameZero.dir/SettingsDialog.cpp.i
+
+CMakeFiles/GameZero.dir/SettingsDialog.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/GameZero.dir/SettingsDialog.cpp.s"
+	/usr/bin/clang++-18 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/draugur/Documents/GameZero/SettingsDialog.cpp -o CMakeFiles/GameZero.dir/SettingsDialog.cpp.s
+
 # Object files for target GameZero
 GameZero_OBJECTS = \
 "CMakeFiles/GameZero.dir/GameZero_autogen/mocs_compilation.cpp.o" \
 "CMakeFiles/GameZero.dir/main.cpp.o" \
-"CMakeFiles/GameZero.dir/MainWindow.cpp.o"
+"CMakeFiles/GameZero.dir/Settings.cpp.o" \
+"CMakeFiles/GameZero.dir/MainWindow.cpp.o" \
+"CMakeFiles/GameZero.dir/SettingsDialog.cpp.o"
 
 # External object files for target GameZero
 GameZero_EXTERNAL_OBJECTS =
 
 GameZero: CMakeFiles/GameZero.dir/GameZero_autogen/mocs_compilation.cpp.o
 GameZero: CMakeFiles/GameZero.dir/main.cpp.o
+GameZero: CMakeFiles/GameZero.dir/Settings.cpp.o
 GameZero: CMakeFiles/GameZero.dir/MainWindow.cpp.o
+GameZero: CMakeFiles/GameZero.dir/SettingsDialog.cpp.o
 GameZero: CMakeFiles/GameZero.dir/build.make
 GameZero: ChatServerClient/ServerClient/libServerClient.a
 GameZero: /usr/lib/x86_64-linux-gnu/libQt5Widgets.so.5.15.13
@@ -139,7 +171,7 @@ GameZero: /usr/lib/x86_64-linux-gnu/libQt5Gui.so.5.15.13
 GameZero: /usr/lib/x86_64-linux-gnu/libQt5Core.so.5.15.13
 GameZero: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0
 GameZero: CMakeFiles/GameZero.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable GameZero"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/draugur/Documents/GameZero/build/c-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable GameZero"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/GameZero.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

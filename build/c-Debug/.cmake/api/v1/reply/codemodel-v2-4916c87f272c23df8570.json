@@ -11,7 +11,7 @@
 						1
 					],
 					"hasInstallRule" : true,
-					"jsonFile" : "directory-.-Debug-bf3e49a125c0a01a8e14.json",
+					"jsonFile" : "directory-.-Debug-b12349734963f8f035ea.json",
 					"minimumCMakeVersion" : 
 					{
 						"string" : "3.5"
@@ -58,7 +58,9 @@
 					"source" : "ChatServerClient/ServerClient",
 					"targetIndexes" : 
 					[
-						6
+						6,
+						7,
+						8
 					]
 				}
 			],
@@ -109,7 +111,9 @@
 					"parentIndex" : 1,
 					"targetIndexes" : 
 					[
-						6
+						6,
+						7,
+						8
 					]
 				}
 			],
@@ -139,7 +143,7 @@
 				{
 					"directoryIndex" : 0,
 					"id" : "GameZero::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-GameZero-Debug-4be87f71f9c9edaa8b4b.json",
+					"jsonFile" : "target-GameZero-Debug-fcc2b5992f10708f23e2.json",
 					"name" : "GameZero",
 					"projectIndex" : 0
 				},
@@ -160,8 +164,22 @@
 				{
 					"directoryIndex" : 2,
 					"id" : "ServerClient::@96c8d70617a200eaa04b",
-					"jsonFile" : "target-ServerClient-Debug-9853ae5abb7a807e77f5.json",
+					"jsonFile" : "target-ServerClient-Debug-2e1f7ffd8e856b477ee0.json",
 					"name" : "ServerClient",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ServerClient_autogen::@96c8d70617a200eaa04b",
+					"jsonFile" : "target-ServerClient_autogen-Debug-9015ce3bd5d1641384d1.json",
+					"name" : "ServerClient_autogen",
+					"projectIndex" : 2
+				},
+				{
+					"directoryIndex" : 2,
+					"id" : "ServerClient_autogen_timestamp_deps::@96c8d70617a200eaa04b",
+					"jsonFile" : "target-ServerClient_autogen_timestamp_deps-Debug-851d930ca89ed5526dae.json",
+					"name" : "ServerClient_autogen_timestamp_deps",
 					"projectIndex" : 2
 				}
 			]

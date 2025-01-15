@@ -65,6 +65,65 @@ public:
             });
     }
 
+    // void doRead()
+    // {
+    //     // Этап 1: Читаем длину пакета (2 байта)
+    //     m_packet.resize(2);
+    //     boost::asio::async_read(m_socket, boost::asio::buffer(m_packet),
+    //                            [this](boost::system::error_code ec, std::size_t length)
+    //         {
+    //             if (!ec && length == 2)
+    //             {
+    //                 // Интерпретируем длину пакета
+    //                 uint16_t packetLength = static_cast<uint8_t>(m_packet[0]) |
+    //                                         (static_cast<uint8_t>(m_packet[1]) << 8);
+
+    //                 if (packetLength > 0 && packetLength <= 0xFFFF)
+    //                 {
+    //                     LOG("Packet Length is: " << packetLength);
+    //                     // Этап 2: Читаем содержимое пакета
+    //                     doReadPacket(packetLength);
+    //                 }
+    //                 else
+    //                 {
+    //                     LOG("Invalid packet length: " << packetLength);
+    //                     // Читаем следующий пакет, игнорируя текущий
+    //                     doRead();
+    //                 }
+    //             }
+    //             else
+    //             {
+    //                 LOG("Error reading packet length: " << ec.message());
+    //             }
+    //         });
+    // }
+
+    // void doReadPacket(std::size_t packetLength)
+    // {
+    //     m_packet.resize(packetLength);
+
+    //     boost::asio::async_read(m_socket, boost::asio::buffer(m_packet),
+    //                            [this](boost::system::error_code ec, std::size_t length)
+    //         {
+    //             if (!ec && length == m_packet.size())
+    //             {
+    //                 std::string receivedData(m_packet.data(), m_packet.data() + length);
+    //                 LOG("Packet received from server: " << receivedData);
+
+    //                 if (onMessageReceivedCallback)
+    //                 {
+    //                     onMessageReceivedCallback(receivedData);
+    //                 }
+    //                 doRead();
+    //             }
+    //             else
+    //             {
+    //                 LOG("Error reading packet data: " << ec.message());
+    //             }
+    //         });
+    // }
+
+
     virtual void handlePacket(uint8_t* data, std::size_t length)=0;
 
     //send function adding

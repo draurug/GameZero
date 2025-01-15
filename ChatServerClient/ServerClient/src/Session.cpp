@@ -6,39 +6,99 @@
 #include "Logs.h"
 #include "TcpServer.h"
 
+// void Session::doRead()
+// {
+//         auto self(shared_from_this());
+//         m_packet.resize(1024);
+//         //вначале прочесть длину пакета, а потом сам пакет -todo
+//         m_socket.async_read_some( boost::asio::buffer(m_packet),
+//                                 [this, self](boost::system::error_code ec, std::size_t length)
+//         {
+//             // Оповещаем сервер о получении пакета
+//             notifyServer(ec, length, reinterpret_cast<uint8_t*>(m_packet.data()));
+
+//             if (!ec)
+//             {
+//                 std::string received_data(m_packet.data(), m_packet.data() + length);
+//                 LOG("#Received from client: " << received_data);
+//                 doRead();
+//             }
+//             else
+//             {
+//                 LOG("Error in doRead: " + ec.message());
+//             }
+//         });
+// }
+
 void Session::doRead()
 {
-        auto self(shared_from_this());
-        //посмотреть реализацию в Packet версии и аналог создать здесь (вначале читаем длину, а потом весь пакет) done
-        //добавить связь с сервером, чтобы оповещать сервер о получении сообщения done
-        // аналогично сделать для клиента done
-        m_data.resize(1024);
-        m_socket.async_read_some(
-        boost::asio::buffer(m_data),
+    auto self(shared_from_this());
+
+    // Этап 1: Читаем длину пакета (2 байта)
+    m_packet.resize(2);
+    boost::asio::async_read(m_socket, boost::asio::buffer(m_packet),
+                           [this, self](boost::system::error_code ec, std::size_t length)
+        {
+            if (!ec && length == 2)
+            {
+                // Интерпретируем длину пакета
+                uint16_t packetLength = static_cast<uint8_t>(m_packet[0]) |
+                                        (static_cast<uint8_t>(m_packet[1]) << 8);
+
+                if (packetLength > 0 && packetLength <= 0xFFFF)
+                {
+                    LOG("Packet Length is: " << packetLength);
+                    // Этап 2: Читаем сам пакет
+                    doReadPacket(packetLength);
+                }
+                else
+                {
+                    LOG("Invalid packet length: " << packetLength);
+                }
+            }
+            else
+            {
+                LOG("Error reading packet length: " << ec.message());
+            }
+        });
+}
+
+void Session::doReadPacket(std::size_t packetLength)
+{
+    auto self(shared_from_this());
+
+    // Резервируем место для данных пакета
+    m_packet.resize(packetLength);
+    boost::asio::async_read(
+        m_socket, boost::asio::buffer(m_packet),
         [this, self](boost::system::error_code ec, std::size_t length)
         {
-            // Оповещаем сервер о получении пакета
-            notifyServer(ec, length, reinterpret_cast<uint8_t*>(m_data.data()));
-
-            if (!ec)
+            if (!ec && length == m_packet.size())
             {
-                std::string received_data(m_data.data(), m_data.data() + length);
+                // Оповещаем сервер о получении полного пакета
+                notifyServer(ec, length, reinterpret_cast<uint8_t*>(m_packet.data()));
+
+                // Преобразуем данные пакета в строку и логируем
+                std::string received_data(m_packet.data(), m_packet.data() + length);
                 LOG("#Received from client: " << received_data);
+
+                // Читаем следующий пакет
                 doRead();
             }
             else
             {
-                LOG("Error in doRead: " + ec.message());
+                LOG("Error reading packet data: " << ec.message());
             }
         });
-    }
+}
+
 
 void Session::doWrite(std::size_t length)
 {
     auto self(shared_from_this());
     LOG("#Before writing");
     boost::asio::async_write(
-        m_socket, boost::asio::buffer(m_data, length),
+        m_socket, boost::asio::buffer(m_packet, length),
         [this, self](boost::system::error_code ec, std::size_t /*length*/)
         {
             LOG("#Did write");

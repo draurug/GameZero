@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/clang++-18
 CXX_DEFINES = -DBOOST_SYSTEM_DYN_LINK -DBOOST_SYSTEM_NO_LIB
 
-CXX_INCLUDES = -I/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include
+CXX_INCLUDES = -I/home/draugur/Documents/GameZero/build/c-Debug/ChatServerClient/ServerClient/ServerClient_autogen/include -I/home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include
 
 CXX_FLAGS = -DQT_QML_DEBUG -g -std=c++17 -fcolor-diagnostics -Wall -Wextra -Wpedantic
 
