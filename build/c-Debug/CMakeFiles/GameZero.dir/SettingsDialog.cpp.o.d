@@ -345,6 +345,13 @@ CMakeFiles/GameZero.dir/SettingsDialog.cpp.o: \
   /usr/include/x86_64-linux-gnu/qt5/QtCore/qlocale.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QDialogButtonBox \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qdialogbuttonbox.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QFormLayout \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qformlayout.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLayout \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayout.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlayoutitem.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qboxlayout.h \
+  /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qgridlayout.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QLabel \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qlabel.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qframe.h \

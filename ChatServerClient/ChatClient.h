@@ -7,24 +7,54 @@ class ChatClient : public TcpClient
 {
 public:
     ChatClient(boost::asio::io_context& io_context,
-               std::function<void(const boost::system::error_code&, std::size_t, void* data)> handleResponse,
-               std::function<void(const std::string&)> onMessageReceived)
-        :TcpClient(io_context, handleResponse, onMessageReceived){}
+               std::function<void(const boost::system::error_code&, std::size_t, void* data)> handleResponse)
+        :TcpClient(io_context, handleResponse){}
 
-    virtual void handlePacket(uint8_t* data, std::size_t length) override
+    virtual void handlePacketFromServer(uint8_t* data, std::size_t length) override
     {
         if (length == 0) return;
 
         // Определяем тип сообщения
         MessageType type = static_cast<MessageType>(data[0]);
+        data++;
+        length--;
 
+        LOG("handlePacketFromServer: " << std::string(data, data + length));
         switch (type)
         {
         case SrvClientList:
         {
-            // Сервер отправил список активных клиентов.
-            std::string clientsList(data + 1, data + length);
-            LOG("Active clients: " << clientsList);
+            std::vector<std::string> nameList;
+            uint8_t* start = data;
+            uint8_t* end = data;
+            uint8_t* dataEnd = data + length;
+
+            while (end < dataEnd)
+            {
+                if (*end == ';')
+                {
+                    if (end > start && end - start > 0)
+                    {
+                        nameList.emplace_back(reinterpret_cast<char*>(start), end - start);
+                    }
+                    start = end + 1;
+                }
+                ++end;
+            }
+
+            if (start < end)
+            {
+                nameList.emplace_back(reinterpret_cast<char*>(start), end - start);
+            }
+
+            for (const auto& name : nameList)
+            {
+                if (!name.empty())
+                {
+                    LOG("Active clients: " << name);
+                }
+            }
+            //emit users to clListWidget (watching  needed)
             break;
         }
         case SrvMessage:
@@ -79,7 +109,7 @@ private:
     void sendPacket(const std::vector<uint8_t>& packet)
     {
         assert(packet.size() <= 0xFFFF);
-
+        LOG("Sent packet first byte: " << packet[0]);
         // Создаём буфер с размером пакета и данными
         std::vector<uint8_t>* fullPacketPtr = new std::vector<uint8_t> (2 + packet.size());
         auto & fullPacket = * fullPacketPtr;
@@ -89,20 +119,19 @@ private:
         std::copy(packet.begin(), packet.end(), fullPacket.begin() + 2);
 
         // Асинхронная отправка полного пакета
-        boost::asio::async_write(
-            m_socket, boost::asio::buffer(fullPacket),
-            [fullPacketPtr](const boost::system::error_code& ec, std::size_t /*length*/)
-            {
-                delete fullPacketPtr;
-                if (ec)
-                {
-                    LOG("Error sending packet: " << ec.message());
-                }
-                else
-                {
-                    LOG("Packet sent successfully!");
-                }
-            });
+        boost::asio::async_write(m_socket, boost::asio::buffer(fullPacket),
+                                [fullPacketPtr](const boost::system::error_code& ec, std::size_t /*length*/)
+                                {
+                                    delete fullPacketPtr;
+                                    if (ec)
+                                    {
+                                        LOG("Error sending packet: " << ec.message());
+                                    }
+                                    else
+                                    {
+                                        LOG("Packet sent successfully!");
+                                    }
+                                });
     }
 
 };

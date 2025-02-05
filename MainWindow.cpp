@@ -6,6 +6,7 @@
 #include "ChatServer.h"
 #include "Logs.h"
 
+#include <QStringList>
 #include <QMessageBox>
 #include <QDebug>
 #include <thread>
@@ -14,15 +15,14 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), m_client(nullptr), io_context()
 {
     ui->setupUi(this);
-
-    // Настройка кнопки Send
-    connect( ui->m_sendButton, &QPushButton::clicked, this, &MainWindow::onSendButtonClicked );
-    connect( this, &MainWindow::onMessageReceived, ui->m_messageOutput, &QTextEdit::append, Qt::QueuedConnection );
+    connect(ui->m_sendButton, &QPushButton::clicked, this, &MainWindow::onSendButtonClicked);
+    connect(ui->m_disconnect, &QPushButton::clicked, this, &MainWindow::disconnectClient);
+    //connect(this, &MainWindow::onUserListSignal, this, &MainWindow::onUserListSlot, Qt::QueuedConnection);
+    //нужно передать список (QStringList)
 }
 
 void MainWindow::initClient(const Settings& settings)
 {
-    // Инициализация TcpClient
     m_client = new ChatClient(io_context,
                               [this](const boost::system::error_code& ec, std::size_t, void* data)
                               {
@@ -31,15 +31,9 @@ void MainWindow::initClient(const Settings& settings)
                                   } else  {
                                       LOG("Message sent successfully!");
                                   }
-                              },
-                              [this](const std::string& message)
-                              {
-                                  LOG("onMessageReceived used successfully?");
-                                  emit this->onMessageReceived(QString::fromStdString(message));
                               });
 
-    // Установка соединения с сервером
-    m_client->connect(settings.getAddress().toStdString(),std::to_string(settings.getPort()),
+    m_client->connect(settings.getAddress().toStdString(), std::to_string(settings.getPort()),
                       [this](const boost::system::error_code& ec, const tcp::endpoint&)
                       {
                           if (ec) {
@@ -51,11 +45,28 @@ void MainWindow::initClient(const Settings& settings)
                               m_client->doRead();
                           }
                       });
+
+    std::thread([this]
+                {
+                    try
+                    {
+                        io_context.run();
+                        LOG("Running program");
+                    }
+                    catch (const std::exception& e)
+                    {
+                        LOG("Error in io_context: " << e.what());
+                    }
+                }).detach();
 }
 
 MainWindow::~MainWindow()
 {
-    delete m_client;
+    if (m_client)
+    {
+        m_client->sayGoodbye();
+        delete m_client;
+    }
     delete ui;
 }
 
@@ -66,32 +77,50 @@ void MainWindow::onSendButtonClicked()
         LOG("Client is not initialized!");
         return;
     }
+    QString recipient = ui->m_clientList->currentIndex().data().toString();
+    QString message = ui->m_typing->text();
 
-    // Получение текста из текстового поля
-    QString message = ui->m_messageInput->toPlainText();
-    if (message.isEmpty())
+    if (recipient.isEmpty() || message.isEmpty())
     {
-        LOG("Cannot send an empty message!");
+        LOG("Recipient or message is empty!");
         return;
     }
 
-    // Отправка сообщения
-    m_client->send(message.toStdString());
-    LOG("Message sent: " << message.toStdString());
+    m_client->sendMessage(recipient.toStdString(), message.toStdString());
+    ui->m_typing->clear();
+}
 
-    // Очистка текстового поля
-    ui->m_messageInput->clear();
+void MainWindow::displayMessage(const QString& message)
+{
+    ui->m_chatHistory->append(message);
+}
+
+void MainWindow::disconnectClient()
+{
+    if (m_client)
+    {
+        m_client->sayGoodbye();
+        LOG("Client disconnected");
+    }
+}
+
+void MainWindow::onMessageReceived(const QString& message)
+{
+    QString formattedMessage = QString("[%1]: %2").arg(message);
+    displayMessage(formattedMessage);
 }
 
 void MainWindow::dbgStartServer()
 {
-    // Запуск io_context в отдельном потоке
-    std::thread ([this]
+    std::thread([]
                 {
                     try
                     {
-                        ChatServer server(io_context, 15001);
-                        io_context.run();
+                        boost::asio::io_context context;
+                        ChatServer server(context, 15001);
+                        LOG("Server run");
+                        context.run();
+                        LOG("Server down");
                     }
                     catch (const std::exception& e)
                     {
@@ -100,15 +129,3 @@ void MainWindow::dbgStartServer()
                 }).detach();
     sleep(1);
 }
-
-//todo:
-// 1) Клиент здоровается с сервером: {0,<name>} -> {101}
-// 2) Клиент requests server about active Clients: {1} -> {102, <clientName1>, <clientName2>,...}
-// ----------------------------------------------------------------------
-// 3) Client send message to <clientName>: {2,<clientName>,<text>}
-// 4) Server send message to Client : -> {103,<fromClientName>,<text>}
-// 5) Клиент прощается с сервером: {3}
-
-//user interface
-//1,2)settingsDialog with address & port (sendHello automatic, than getuserlist) --done
-//3,4,5)choosing dialog with active user and sending some messages

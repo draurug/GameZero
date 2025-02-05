@@ -16,8 +16,9 @@ public:
     ChatServer(boost::asio::io_context& io_context, unsigned short port)
         : TcpServer(io_context, port) {}
 
-    virtual void handlePacket(uint8_t* data, std::size_t length, std::shared_ptr<Session> session) override
+    virtual void handlePacketFromClient(uint8_t* data, std::size_t length, std::shared_ptr<Session> session) override
     {
+        LOG("#handlePacketFromClient: length = " << length);
         if (length == 0) return;
 
         MessageType type = static_cast<MessageType>(data[0]);
@@ -34,7 +35,7 @@ public:
             m_ClientsMap[clientId] = session;
             m_clientNames[clientId] = name;
 
-            LOG("Client joined: " << name);
+            LOG("### Client '"<< name <<"': added to ClList");
 
             // Отправляем подтверждение клиенту
             std::vector<uint8_t> response = {static_cast<uint8_t>(SrvClientList)};
@@ -43,16 +44,21 @@ public:
         }
         case ClGetList:
         {
+            LOG("#'ClGetList' received");
             // Клиент запрашивает список активных клиентов
             std::string clientList;
             for (const auto& [id, name] : m_clientNames)
             {
-                clientList += name + '\0';
+                clientList += name + ";";
             }
+            clientList += "dbg_name" ";";
+            clientList += "dbg_name2" ";";
+            LOG("### clientList: " << clientList);
 
             std::vector<uint8_t> response = {static_cast<uint8_t>(SrvClientList)};
             response.insert(response.end(), clientList.begin(), clientList.end());
             session->send(std::string(response.begin(), response.end()));
+            LOG("#List of active users sent");
             break;
         }
         case ClSendMessage:
@@ -63,8 +69,8 @@ public:
             std::string message = std::string(data + separator + 1, data + length);
 
             // Ищем клиента по имени
-            auto it = std::find_if(m_clientNames.begin(), m_clientNames.end(),
-                                   [&targetName](const auto& pair) { return pair.second == targetName; });
+            auto it = std::find_if(m_clientNames.begin(), m_clientNames.end(),[&targetName](const auto& pair)
+            { return pair.second == targetName; });
 
             if (it != m_clientNames.end())
             {
@@ -80,7 +86,7 @@ public:
             }
             else
             {
-                LOG("Target client not found: " << targetName);
+                LOG("#Target client not found: " << targetName);
             }
             break;
         }
@@ -93,7 +99,7 @@ public:
             if (clientIdIt != m_ClientsMap.end())
             {
                 int clientId = clientIdIt->first;
-                LOG("Client disconnected: " << m_clientNames[clientId]);
+                LOG("#Client disconnected: " << m_clientNames[clientId]);
 
                 m_ClientsMap.erase(clientId);
                 m_clientNames.erase(clientId);
@@ -101,7 +107,7 @@ public:
             break;
         }
         default:
-            LOG("Unknown message type received");
+            LOG("#Unknown message type received");
         }
     }
 
@@ -114,7 +120,7 @@ public:
         if (clientIdIt != m_ClientsMap.end())
         {
             int clientId = clientIdIt->first;
-            LOG("Client " << m_clientNames[clientId] << " disconnected");
+            LOG("#Client " << m_clientNames[clientId] << " disconnected");
 
             m_ClientsMap.erase(clientId);
             m_clientNames.erase(clientId);

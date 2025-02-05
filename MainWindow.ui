@@ -6,49 +6,100 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>805</width>
+    <height>589</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <layout class="QFormLayout" name="formLayout">
-    <item row="1" column="1">
-     <widget class="QTextEdit" name="m_messageInput"/>
-    </item>
-    <item row="3" column="1">
-     <widget class="QPushButton" name="m_sendButton">
-      <property name="text">
-       <string>Send</string>
-      </property>
-     </widget>
-    </item>
-    <item row="5" column="1">
-     <widget class="QTextEdit" name="m_messageOutput">
-      <property name="readOnly">
-       <bool>true</bool>
-      </property>
-     </widget>
-    </item>
-   </layout>
+   <widget class="QGroupBox" name="clientList">
+    <property name="geometry">
+     <rect>
+      <x>549</x>
+      <y>30</y>
+      <width>231</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Clients</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <item>
+      <widget class="QListWidget" name="m_clientList"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="m_disconnect">
+       <property name="text">
+        <string>Disconnect me</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QGroupBox" name="chat">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>30</y>
+      <width>521</width>
+      <height>481</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>Chat</string>
+    </property>
+    <widget class="QTextEdit" name="m_chatHistory">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>501</width>
+       <height>401</height>
+      </rect>
+     </property>
+    </widget>
+    <widget class="QWidget" name="layoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>440</y>
+       <width>501</width>
+       <height>41</height>
+      </rect>
+     </property>
+     <layout class="QHBoxLayout" name="messaging">
+      <item>
+       <widget class="QLineEdit" name="m_typing"/>
+      </item>
+      <item>
+       <widget class="QPushButton" name="m_sendButton">
+        <property name="minimumSize">
+         <size>
+          <width>50</width>
+          <height>10</height>
+         </size>
+        </property>
+        <property name="text">
+         <string>Send</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>805</width>
      <height>23</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menuApplication">
-    <property name="title">
-     <string>Application</string>
-    </property>
-   </widget>
-   <addaction name="menuApplication"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

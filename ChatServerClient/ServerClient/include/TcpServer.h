@@ -26,11 +26,7 @@ public:
     {
         if(!ec)
         {
-            handlePacket(data, length, session);
-            LOG("#PacketReceived");
-            std::string message(data, data + length);
-            LOG("Received message: " + message);
-            session ->send("Acknowledged: " + message);
+            handlePacketFromClient(data, length, session);
         }
         else
         {
@@ -38,7 +34,7 @@ public:
         }
     }
 
-    virtual void handlePacket(uint8_t* data, std::size_t length, std::shared_ptr<Session> session)=0;
+    virtual void handlePacketFromClient(uint8_t* data, std::size_t length, std::shared_ptr<Session> session)=0;
 
 private:
     void doAccept()

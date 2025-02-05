@@ -21,12 +21,15 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-    void initClient(const Settings& settings);
-    void dbgStartServer();
 
-signals:
-    void onMessageReceived(const QString &message);
+    void initClient(const Settings& settings);
+    void disconnectClient();
+    static void dbgStartServer();
 
 private slots:
     void onSendButtonClicked();
+    void displayMessage(const QString& message);
+    void onMessageReceived(const QString& message);
+    //void updateClientList(const std::vector<std::string>& clients);
+
 };
