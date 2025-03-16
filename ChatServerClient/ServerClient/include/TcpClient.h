@@ -22,7 +22,7 @@ public:
 
     virtual ~TcpClient()=default;
 
-    void connect(const std::string& host, const std::string& port,
+    void connectToServer(const std::string& host, const std::string& port,
                  const std::function<void(const boost::system::error_code& ec, const tcp::endpoint&)> &func)
     {
         auto endpoints = m_resolver.resolve(host, port);

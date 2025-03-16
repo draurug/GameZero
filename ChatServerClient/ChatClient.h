@@ -2,13 +2,17 @@
 
 #include "TcpClient.h"
 #include "MessageType.h"
+#include <vector>
+#include <string>
 
 class ChatClient : public TcpClient
 {
+
 public:
     ChatClient(boost::asio::io_context& io_context,
-               std::function<void(const boost::system::error_code&, std::size_t, void* data)> handleResponse)
-        :TcpClient(io_context, handleResponse){}
+               std::function<void(const boost::system::error_code&, std::size_t, void* data)> handleResponse,
+               std::function<void(const std::vector<std::string>&)> userListCallback)
+    : TcpClient(io_context, handleResponse), m_userListCallback(std::move(userListCallback)) {}
 
     virtual void handlePacketFromServer(uint8_t* data, std::size_t length) override
     {
@@ -25,9 +29,9 @@ public:
         case SrvClientList:
         {
             std::vector<std::string> nameList;
-            uint8_t* start = data;
-            uint8_t* end = data;
-            uint8_t* dataEnd = data + length;
+            const char* start = (char*) data;
+            const char* end = (char*) data;
+            const char* dataEnd = (char*) data + length;
 
             while (end < dataEnd)
             {
@@ -35,7 +39,7 @@ public:
                 {
                     if (end > start && end - start > 0)
                     {
-                        nameList.emplace_back(reinterpret_cast<char*>(start), end - start);
+                        nameList.push_back(std::string (start, end));
                     }
                     start = end + 1;
                 }
@@ -44,7 +48,7 @@ public:
 
             if (start < end)
             {
-                nameList.emplace_back(reinterpret_cast<char*>(start), end - start);
+                nameList.push_back(std::string (start, end));
             }
 
             for (const auto& name : nameList)
@@ -54,7 +58,7 @@ public:
                     LOG("Active clients: " << name);
                 }
             }
-            //emit users to clListWidget (watching  needed)
+             m_userListCallback(nameList);
             break;
         }
         case SrvMessage:
@@ -103,13 +107,15 @@ public:
         std::vector<uint8_t> packet = {static_cast<uint8_t>(ClBye)};
         sendPacket(packet);
     }
+    std::function<void(const std::vector<std::string>&)> m_userListCallback;
 
 private:
+
     // Отправка пакета через TCP-сокет.
     void sendPacket(const std::vector<uint8_t>& packet)
     {
         assert(packet.size() <= 0xFFFF);
-        LOG("Sent packet first byte: " << packet[0]);
+        //LOG("Sent packet first byte: " << packet[0]);
         // Создаём буфер с размером пакета и данными
         std::vector<uint8_t>* fullPacketPtr = new std::vector<uint8_t> (2 + packet.size());
         auto & fullPacket = * fullPacketPtr;
@@ -133,5 +139,4 @@ private:
                                     }
                                 });
     }
-
 };

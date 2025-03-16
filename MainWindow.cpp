@@ -1,7 +1,6 @@
 #include "MainWindow.h"
 #include "Settings.h"
 #include "ui_MainWindow.h"
-#include "TcpServer.h"
 #include "ChatClient.h"
 #include "ChatServer.h"
 #include "Logs.h"
@@ -17,8 +16,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     connect(ui->m_sendButton, &QPushButton::clicked, this, &MainWindow::onSendButtonClicked);
     connect(ui->m_disconnect, &QPushButton::clicked, this, &MainWindow::disconnectClient);
-    //connect(this, &MainWindow::onUserListSignal, this, &MainWindow::onUserListSlot, Qt::QueuedConnection);
-    //нужно передать список (QStringList)
+    connect(this, &MainWindow::onUserListSignal, this, &MainWindow::onUserListSlot, Qt::QueuedConnection);
 }
 
 void MainWindow::initClient(const Settings& settings)
@@ -31,9 +29,18 @@ void MainWindow::initClient(const Settings& settings)
                                   } else  {
                                       LOG("Message sent successfully!");
                                   }
+    }, [this](const std::vector<std::string>& userList)
+                              {
+                                  QStringList qUserList;
+                                  for (const auto& name : userList)
+                                  {
+                                      qUserList.append(QString::fromStdString(name));
+                                  }
+
+                                  emit onUserListSignal(qUserList); // Эмитим сигнал в MainWindow
                               });
 
-    m_client->connect(settings.getAddress().toStdString(), std::to_string(settings.getPort()),
+    m_client->connectToServer(settings.getAddress().toStdString(), std::to_string(settings.getPort()),
                       [this](const boost::system::error_code& ec, const tcp::endpoint&)
                       {
                           if (ec) {
@@ -77,7 +84,7 @@ void MainWindow::onSendButtonClicked()
         LOG("Client is not initialized!");
         return;
     }
-    QString recipient = ui->m_clientList->currentIndex().data().toString();
+    QString recipient = ui->m_clientList->currentItem() ? ui->m_clientList->currentItem()->text() : "";
     QString message = ui->m_typing->text();
 
     if (recipient.isEmpty() || message.isEmpty())
@@ -108,6 +115,13 @@ void MainWindow::onMessageReceived(const QString& message)
 {
     QString formattedMessage = QString("[%1]: %2").arg(message);
     displayMessage(formattedMessage);
+}
+
+void MainWindow::onUserListSlot(const QStringList& users)
+{
+    ui->m_clientList->clear();
+    ui->m_clientList->addItems(users);
+    LOG("Client list updated");
 }
 
 void MainWindow::dbgStartServer()

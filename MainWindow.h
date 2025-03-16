@@ -4,11 +4,13 @@
 #include <QString>
 #include <QTextEdit>
 #include <QPushButton>
+#include <QListWidget>
 #include "ChatClient.h"
 #include "Settings.h"
 
 namespace Ui
 { class MainWindow; }
+
 
 class MainWindow : public QMainWindow
 {
@@ -17,19 +19,21 @@ class MainWindow : public QMainWindow
     ChatClient* m_client;
     std::thread io_thread;
     boost::asio::io_context io_context;
+    QStringList *m_clientListModel;
 
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
     void initClient(const Settings& settings);
-    void disconnectClient();
+    void displayMessage(const QString& message);
     static void dbgStartServer();
+signals:
+    void onUserListSignal(const QStringList& users);
 
 private slots:
     void onSendButtonClicked();
-    void displayMessage(const QString& message);
+    void disconnectClient();
     void onMessageReceived(const QString& message);
-    //void updateClientList(const std::vector<std::string>& clients);
-
+    void onUserListSlot(const QStringList& userList);
 };

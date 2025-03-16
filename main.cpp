@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
 
     MainWindow w;
     w.dbgStartServer();
+    //w.dbgStartSecondClient("Clt2");
     w.initClient(gSettings);
     w.show();
     return a.exec();
