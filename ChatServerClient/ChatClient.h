@@ -11,8 +11,11 @@ class ChatClient : public TcpClient
 public:
     ChatClient(boost::asio::io_context& io_context,
                std::function<void(const boost::system::error_code&, std::size_t, void* data)> handleResponse,
-               std::function<void(const std::vector<std::string>&)> userListCallback)
-    : TcpClient(io_context, handleResponse), m_userListCallback(std::move(userListCallback)) {}
+               std::function<void(const std::vector<std::string>&)> userListCallback,
+               std::function<void(const std::string& sender, const std::string& message)> onMessageReceivedCallBack)
+        : TcpClient(io_context, handleResponse),
+            m_userListCallback(std::move(userListCallback)),
+            m_onMessageReceivedCallBack(onMessageReceivedCallBack){}
 
     virtual void handlePacketFromServer(uint8_t* data, std::size_t length) override
     {
@@ -64,17 +67,21 @@ public:
         case SrvMessage:
         {
             // Сервер передал сообщение от другого клиента.
-            std::string fromClient(reinterpret_cast<char*>(data + 1));
+            std::string fromClient{ reinterpret_cast<char*>(data+1) };
             size_t separator = fromClient.find('\0');
             std::string text = std::string(data + separator + 1, data + length);
 
             LOG("Message from " << fromClient << ": " << text);
+            m_onMessageReceivedCallBack(fromClient, text);
             break;
         }
         default:
             LOG("Unknown message type received: " << static_cast<int>(type));
         }
     }
+
+    std::function<void(const std::vector<std::string>&)> m_userListCallback;
+    std::function<void (const std::string&, std::string&)>m_onMessageReceivedCallBack;
 
     // Отправка приветствия серверу с указанием имени.
     void sendHello(const std::string& name)
@@ -107,7 +114,6 @@ public:
         std::vector<uint8_t> packet = {static_cast<uint8_t>(ClBye)};
         sendPacket(packet);
     }
-    std::function<void(const std::vector<std::string>&)> m_userListCallback;
 
 private:
 

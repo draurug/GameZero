@@ -67,8 +67,8 @@ include ChatServerClient/ServerClient/CMakeFiles/ServerClient_autogen_timestamp_
 include ChatServerClient/ServerClient/CMakeFiles/ServerClient_autogen_timestamp_deps.dir/progress.make
 
 ChatServerClient/ServerClient/CMakeFiles/ServerClient_autogen_timestamp_deps: /usr/lib/qt5/bin/moc
-ChatServerClient/ServerClient/CMakeFiles/ServerClient_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0
 ChatServerClient/ServerClient/CMakeFiles/ServerClient_autogen_timestamp_deps: /usr/lib/qt5/bin/uic
+ChatServerClient/ServerClient/CMakeFiles/ServerClient_autogen_timestamp_deps: /usr/lib/x86_64-linux-gnu/libboost_system.so.1.83.0
 
 ServerClient_autogen_timestamp_deps: ChatServerClient/ServerClient/CMakeFiles/ServerClient_autogen_timestamp_deps
 ServerClient_autogen_timestamp_deps: ChatServerClient/ServerClient/CMakeFiles/ServerClient_autogen_timestamp_deps.dir/build.make

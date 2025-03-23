@@ -2,6 +2,7 @@
 #include "Settings.h"
 #include "ui_MainWindow.h"
 #include "ChatClient.h"
+#include "DbgClient.h"
 #include "ChatServer.h"
 #include "Logs.h"
 
@@ -17,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->m_sendButton, &QPushButton::clicked, this, &MainWindow::onSendButtonClicked);
     connect(ui->m_disconnect, &QPushButton::clicked, this, &MainWindow::disconnectClient);
     connect(this, &MainWindow::onUserListSignal, this, &MainWindow::onUserListSlot, Qt::QueuedConnection);
+    connect(this, &MainWindow::onMessageSignal, this, &MainWindow::onMessageSlot);
 }
 
 void MainWindow::initClient(const Settings& settings)
@@ -29,7 +31,8 @@ void MainWindow::initClient(const Settings& settings)
                                   } else  {
                                       LOG("Message sent successfully!");
                                   }
-    }, [this](const std::vector<std::string>& userList)
+                              },
+                              [this](const std::vector<std::string>& userList)
                               {
                                   QStringList qUserList;
                                   for (const auto& name : userList)
@@ -37,7 +40,12 @@ void MainWindow::initClient(const Settings& settings)
                                       qUserList.append(QString::fromStdString(name));
                                   }
 
-                                  emit onUserListSignal(qUserList); // Эмитим сигнал в MainWindow
+                                  emit onUserListSignal(qUserList);
+                              },
+                              [this](const std::string& sender, const std::string& message)
+                              {
+                                  QString formattedMessage = QString("%1: %2").arg(QString::fromStdString(sender), QString::fromStdString(message));
+                                  emit onMessageSignal(formattedMessage);
                               });
 
     m_client->connectToServer(settings.getAddress().toStdString(), std::to_string(settings.getPort()),
@@ -111,17 +119,16 @@ void MainWindow::disconnectClient()
     }
 }
 
-void MainWindow::onMessageReceived(const QString& message)
-{
-    QString formattedMessage = QString("[%1]: %2").arg(message);
-    displayMessage(formattedMessage);
-}
-
 void MainWindow::onUserListSlot(const QStringList& users)
 {
     ui->m_clientList->clear();
     ui->m_clientList->addItems(users);
     LOG("Client list updated");
+}
+
+void MainWindow::onMessageSlot(const QString& message)
+{
+    ui->m_chatHistory->append("DbgClient: " + message);
 }
 
 void MainWindow::dbgStartServer()
@@ -142,4 +149,56 @@ void MainWindow::dbgStartServer()
                     }
                 }).detach();
     sleep(1);
+}
+
+void dbgStartSecondClient()
+{
+    static boost::asio::io_context io_context;
+    ChatClient* client2 = new ChatClient(io_context,
+                              [](const boost::system::error_code& ec, std::size_t, void* data)
+                              {
+                                  if (ec) {
+                                      LOG("Send error: " << ec.message());
+                                  } else  {
+                                      LOG("Message sent successfully!");
+                                  }
+                              },
+                              [client2](const std::vector<std::string>& userList)
+                              {
+                                for(auto& user:userList)
+                                {
+                                    LOG("#111# User:: " << user);
+                                }
+                              },
+                                [](const std::string& sender, const std::string& message)
+                                {
+        LOG("#111# Message from: " << sender << " is: "<< message);
+                                });
+
+
+    client2->connectToServer(gSettings.getAddress().toStdString(), std::to_string(gSettings.getPort()),
+                              [client2](const boost::system::error_code& ec, const tcp::endpoint&)
+                              {
+                                  if (ec){
+                                      LOG("Connection error: " << ec.message());
+                                  } else {
+                                      LOG("Connected successfully!");
+                                      client2->sendHello("Bot");
+                                      client2->requestClientList();
+                                      client2->doRead();
+                                  }
+                              });
+
+    std::thread([]
+                {
+                    try
+                    {
+                        io_context.run();
+                        LOG("Running program");
+                    }
+                    catch (const std::exception& e)
+                    {
+                        LOG("Error in io_context: " << e.what());
+                    }
+                }).detach();
 }

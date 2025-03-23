@@ -19,4 +19,5 @@ add_library(ChatServerClient STATIC
         ChatServer.h
         ChatClient.h
         MessageType.h
+        DbgClient.h
 )

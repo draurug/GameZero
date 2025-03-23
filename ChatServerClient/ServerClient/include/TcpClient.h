@@ -95,7 +95,7 @@ public:
 
     virtual void handlePacketFromServer(uint8_t* data, std::size_t length)=0;
 
-    void send(std::string message)
+    void send(std::string& message)
     {
         // Формирование пакета с 2 байтами длины в начале
         uint16_t length = static_cast<uint16_t>(message.size());

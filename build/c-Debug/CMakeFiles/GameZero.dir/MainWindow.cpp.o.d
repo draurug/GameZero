@@ -1464,6 +1464,7 @@ CMakeFiles/GameZero.dir/MainWindow.cpp.o: \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/qstatusbar.h \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QVBoxLayout \
   /usr/include/x86_64-linux-gnu/qt5/QtWidgets/QWidget \
+  /home/draugur/Documents/GameZero/ChatServerClient/DbgClient.h \
   /home/draugur/Documents/GameZero/ChatServerClient/ChatServer.h \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/TcpServer.h \
   /home/draugur/Documents/GameZero/ChatServerClient/ServerClient/include/Session.h \

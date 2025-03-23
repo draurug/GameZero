@@ -11,6 +11,7 @@
 namespace Ui
 { class MainWindow; }
 
+void dbgStartSecondClient();
 
 class MainWindow : public QMainWindow
 {
@@ -28,12 +29,13 @@ public:
     void initClient(const Settings& settings);
     void displayMessage(const QString& message);
     static void dbgStartServer();
+
 signals:
     void onUserListSignal(const QStringList& users);
-
+    void onMessageSignal(const QString& message);
 private slots:
     void onSendButtonClicked();
     void disconnectClient();
-    void onMessageReceived(const QString& message);
     void onUserListSlot(const QStringList& userList);
+    void onMessageSlot(const QString& message);
 };

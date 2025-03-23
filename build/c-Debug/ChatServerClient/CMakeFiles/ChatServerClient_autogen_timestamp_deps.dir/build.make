@@ -66,8 +66,8 @@ include ChatServerClient/CMakeFiles/ChatServerClient_autogen_timestamp_deps.dir/
 # Include the progress variables for this target.
 include ChatServerClient/CMakeFiles/ChatServerClient_autogen_timestamp_deps.dir/progress.make
 
-ChatServerClient/CMakeFiles/ChatServerClient_autogen_timestamp_deps: /usr/lib/qt5/bin/moc
 ChatServerClient/CMakeFiles/ChatServerClient_autogen_timestamp_deps: /usr/lib/qt5/bin/uic
+ChatServerClient/CMakeFiles/ChatServerClient_autogen_timestamp_deps: /usr/lib/qt5/bin/moc
 
 ChatServerClient_autogen_timestamp_deps: ChatServerClient/CMakeFiles/ChatServerClient_autogen_timestamp_deps
 ChatServerClient_autogen_timestamp_deps: ChatServerClient/CMakeFiles/ChatServerClient_autogen_timestamp_deps.dir/build.make

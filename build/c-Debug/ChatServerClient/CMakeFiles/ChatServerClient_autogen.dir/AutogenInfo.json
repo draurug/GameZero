@@ -84,6 +84,12 @@
 			null
 		],
 		[
+			"/home/draugur/Documents/GameZero/ChatServerClient/DbgClient.h",
+			"MU",
+			"EWIEGA46WW/moc_DbgClient.cpp",
+			null
+		],
+		[
 			"/home/draugur/Documents/GameZero/ChatServerClient/MessageType.h",
 			"MU",
 			"EWIEGA46WW/moc_MessageType.cpp",
