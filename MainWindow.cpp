@@ -94,7 +94,7 @@ void MainWindow::onSendButtonClicked()
     }
     QString recipient = ui->m_clientList->currentItem() ? ui->m_clientList->currentItem()->text() : "";
     QString message = ui->m_typing->text();
-
+    QString sender = gSettings.getUsername();
     if (recipient.isEmpty() || message.isEmpty())
     {
         LOG("Recipient or message is empty!");
@@ -103,13 +103,8 @@ void MainWindow::onSendButtonClicked()
 
     m_client->sendMessage(recipient.toStdString(), message.toStdString());
     ui->m_typing->clear();
+    ui->m_chatHistory->append(sender + " sent: \"" + message + "\" to " + recipient);
 }
-
-void MainWindow::displayMessage(const QString& message)
-{
-    ui->m_chatHistory->append(message);
-}
-
 void MainWindow::disconnectClient()
 {
     if (m_client)

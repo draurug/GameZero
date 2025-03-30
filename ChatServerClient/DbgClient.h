@@ -66,7 +66,6 @@ public:
 
     void sendMessage(const std::string& recipient, const std::string& message)
     {
-        LOG("Cannot send message, socket is closed.");
 
         std::vector<uint8_t> packet = {static_cast<uint8_t>(ClSendMessage)};
         packet.insert(packet.end(), recipient.begin(), recipient.end());

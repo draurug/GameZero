@@ -128,7 +128,7 @@ private:
 
         fullPacket[0] = packet.size() & 0xFF;           // Младший байт размера
         fullPacket[1] = (packet.size() >> 8) & 0xFF;    // Старший байт размера
-        std::copy(packet.begin(), packet.end(), fullPacket.begin() + 2);
+        std::copy(packet.begin(), packet.end(), fullPacket.begin());
 
         // Асинхронная отправка полного пакета
         boost::asio::async_write(m_socket, boost::asio::buffer(fullPacket),
