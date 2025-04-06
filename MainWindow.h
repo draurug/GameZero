@@ -11,11 +11,11 @@
 namespace Ui
 { class MainWindow; }
 
-void dbgStartSecondClient();
+void dbgStartSecondClient(void* mainWindow);
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+    Q_OBJECT;
     Ui::MainWindow *ui;
     ChatClient* m_client;
     std::thread io_thread;
@@ -33,9 +33,11 @@ public:
 signals:
     void onUserListSignal(const QStringList& users);
     void onMessageSignal(const QString& message);
+    void onMessageReceivedFromSignal(const QString& sender, const QString& message);
 private slots:
     void onSendButtonClicked();
     void disconnectClient();
     void onUserListSlot(const QStringList& userList);
     void onMessageSlot(const QString& message);
+    //void onMessageReceivedFromSlot(const QString& sender, const QString& message);
 };

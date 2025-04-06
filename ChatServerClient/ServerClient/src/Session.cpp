@@ -51,10 +51,10 @@ void Session::doReadPacket(std::size_t packetLength)
                                 if (!ec && length == m_packet.size())
                                 {
                                     // Преобразуем данные пакета в строку и логируем
-                                    std::string received_data(m_packet.data(), m_packet.data() + length);
-                                    LOG("#Session Received from client data: " << received_data);
+                                    //std::string received_data(m_packet.data(), m_packet.data() + length);
+                                    LOG("#Session Received from client data: " << length);
 
-                                    // Оповещаем сервер о получении полного пакета
+                                    // Сессия оповещает сервер о получении полного пакета
                                     notifyServer(ec, length, reinterpret_cast<uint8_t*>(m_packet.data()));
 
                                     // Читаем следующий пакет

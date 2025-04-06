@@ -10,6 +10,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <thread>
+#include <set>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent), ui(new Ui::MainWindow), m_client(nullptr), io_context()
@@ -19,6 +20,10 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->m_disconnect, &QPushButton::clicked, this, &MainWindow::disconnectClient);
     connect(this, &MainWindow::onUserListSignal, this, &MainWindow::onUserListSlot, Qt::QueuedConnection);
     connect(this, &MainWindow::onMessageSignal, this, &MainWindow::onMessageSlot);
+    connect(this, &MainWindow::onMessageReceivedFromSignal, this, [this](const QString& sender, const QString& message)
+    {
+        ui->m_chatHistory->append(sender + " sent: " + message);
+    },Qt::QueuedConnection);
 }
 
 void MainWindow::initClient(const Settings& settings)
@@ -146,10 +151,13 @@ void MainWindow::dbgStartServer()
     sleep(1);
 }
 
-void dbgStartSecondClient()
+ChatClient* client2;
+void dbgStartSecondClient(void* mainWindow)
 {
+    std::set<std::string> alreadyRepliedTo;
+    MainWindow* mw = static_cast<MainWindow*>(mainWindow);
     static boost::asio::io_context io_context;
-    ChatClient* client2 = new ChatClient(io_context,
+    client2 = new ChatClient(io_context,
                               [](const boost::system::error_code& ec, std::size_t, void* data)
                               {
                                   if (ec) {
@@ -158,26 +166,27 @@ void dbgStartSecondClient()
                                       LOG("Message sent successfully!");
                                   }
                               },
-                              [client2](const std::vector<std::string>& userList)
+                              [](const std::vector<std::string>& userList)
                               {
                                 for(auto& user:userList)
                                 {
                                     LOG("#111# User:: " << user);
                                 }
                               },
-                                [](const std::string& sender, const std::string& message)
+                                [mw](const std::string& sender, const std::string& message)
                                 {
-        LOG("#111# Message from: " << sender << " is: "<< message);
+                                    LOG("#111# Message from: " << sender << ": length: "<< message.size());
+                                    client2->sendMessage(sender,"Glad to see you");
+                                    //emit mw->onMessageReceivedFromSignal(QString::fromStdString(sender), QString::fromStdString(message)); //todo
                                 });
 
-
     client2->connectToServer(gSettings.getAddress().toStdString(), std::to_string(gSettings.getPort()),
-                              [client2](const boost::system::error_code& ec, const tcp::endpoint&)
+                              [](const boost::system::error_code& ec, const tcp::endpoint&)
                               {
                                   if (ec){
-                                      LOG("Connection error: " << ec.message());
+                                      LOG("#111# Connection error: " << ec.message());
                                   } else {
-                                      LOG("Connected successfully!");
+                                      LOG("#111# Connected successfully!");
                                       client2->sendHello("Bot");
                                       client2->requestClientList();
                                       client2->doRead();
@@ -186,8 +195,7 @@ void dbgStartSecondClient()
 
     std::thread([]
                 {
-                    try
-                    {
+                    try{
                         io_context.run();
                         LOG("Running program");
                     }

@@ -51,8 +51,6 @@ public:
             {
                 clientList += name + ";";
             }
-            clientList += "dbg_name" ";";
-            clientList += "dbg_name2" ";";
             LOG("### clientList: " << clientList);
 
             std::vector<uint8_t> response = {static_cast<uint8_t>(SrvClientList)};

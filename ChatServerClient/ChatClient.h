@@ -26,7 +26,9 @@ public:
         data++;
         length--;
 
-        LOG("handlePacketFromServer: " << std::string(data, data + length));
+       // LOG("handlePacketFromServer: " << std::string(data, data + length));
+        LOG("handlePacketFromServer: length: " << length);
+
         switch (type)
         {
         case SrvClientList:
@@ -67,11 +69,11 @@ public:
         case SrvMessage:
         {
             // Сервер передал сообщение от другого клиента.
-            std::string fromClient{ reinterpret_cast<char*>(data+1) };
+            std::string fromClient{ reinterpret_cast<char*>(data) };
             size_t separator = fromClient.find('\0');
             std::string text = std::string(data + separator + 1, data + length);
-
-            LOG("Message from " << fromClient << ": " << text);
+            LOG("Message length: " << length);
+            LOG("Message from " << fromClient);
             m_onMessageReceivedCallBack(fromClient, text);
             break;
         }
@@ -99,10 +101,10 @@ public:
     }
 
     // Отправка сообщения другому клиенту.
-    void sendMessage(const std::string& m_recipient, const std::string& message)
+    void sendMessage(const std::string& recipient, const std::string& message)
     {
         std::vector<uint8_t> packet = {static_cast<uint8_t>(ClSendMessage)};
-        packet.insert(packet.end(), m_recipient.begin(), m_recipient.end());
+        packet.insert(packet.end(), recipient.begin(), recipient.end());
         packet.push_back('\0'); // Разделитель между именем и текстом сообщения
         packet.insert(packet.end(), message.begin(), message.end());
         sendPacket(packet);
@@ -128,7 +130,7 @@ private:
 
         fullPacket[0] = packet.size() & 0xFF;           // Младший байт размера
         fullPacket[1] = (packet.size() >> 8) & 0xFF;    // Старший байт размера
-        std::copy(packet.begin(), packet.end(), fullPacket.begin());
+        std::copy(packet.begin(), packet.end(), fullPacket.begin() + 2);
 
         // Асинхронная отправка полного пакета
         boost::asio::async_write(m_socket, boost::asio::buffer(fullPacket),
