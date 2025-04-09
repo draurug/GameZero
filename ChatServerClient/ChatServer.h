@@ -34,6 +34,7 @@ public:
             int clientId = m_nextClientId++;
             m_ClientsMap[clientId] = session;
             m_clientNames[clientId] = name;
+            session->setName(name);
 
             LOG("### Client '"<< name <<"': added to ClList");
 
@@ -62,9 +63,23 @@ public:
         case ClSendMessage:
         {
             // Клиент отправляет сообщение другому клиенту
-            std::string targetName(reinterpret_cast<char*>(data + 1));
-            size_t separator = targetName.find('\0');
-            std::string message = std::string(data + separator + 1, data + length);
+            auto ptr = data+1;
+            for( ; ptr < data+length; ptr++ )
+            {
+                if ( *ptr == 0 )
+                {
+                    break;
+                }
+            }
+            if ( *ptr != 0 )
+            {
+                LOG("#Error: no null terminator found");
+                return;
+            }
+
+            std::string targetName(reinterpret_cast<char*>(data + 1), reinterpret_cast<char*>(ptr) );
+            std::string message = std::string(ptr + 1, data + length);
+            LOG("#handlePacketFromClient: targetName = " << targetName );
 
             // Ищем клиента по имени
             auto it = std::find_if(m_clientNames.begin(), m_clientNames.end(),[&targetName](const auto& pair)
@@ -76,7 +91,8 @@ public:
                 auto targetSession = m_ClientsMap[targetId];
 
                 std::vector<uint8_t> response = {static_cast<uint8_t>(SrvMessage)};
-                response.insert(response.end(), targetName.begin(), targetName.end());
+                auto sender = session->getName();
+                response.insert(response.end(), sender.begin(), sender.end());
                 response.push_back('\0');
                 response.insert(response.end(), message.begin(), message.end());
 

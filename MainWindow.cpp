@@ -152,6 +152,7 @@ void MainWindow::dbgStartServer()
 }
 
 ChatClient* client2;
+bool atOnce = true;
 void dbgStartSecondClient(void* mainWindow)
 {
     std::set<std::string> alreadyRepliedTo;
@@ -175,8 +176,13 @@ void dbgStartSecondClient(void* mainWindow)
                               },
                                 [mw](const std::string& sender, const std::string& message)
                                 {
-                                    LOG("#111# Message from: " << sender << ": length: "<< message.size());
-                                    client2->sendMessage(sender,"Glad to see you");
+                                    //if ( atOnce )
+                                    {
+                                        atOnce = false;
+                                        LOG("#111# Message from: " << sender << ": length: "<< message.size());
+                                        LOG("#111# Message from: " << message);
+                                        client2->sendMessage(sender,"Glad to see you");
+                                    }
                                     //emit mw->onMessageReceivedFromSignal(QString::fromStdString(sender), QString::fromStdString(message)); //todo
                                 });
 

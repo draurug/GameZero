@@ -15,6 +15,8 @@ class Session : public std::enable_shared_from_this<Session>
     std::vector<uint8_t> m_packet;
     TcpServer& m_server;
 
+    std::string m_name;
+
 public:
     explicit Session(tcp::socket socket, TcpServer& server )
         : m_socket(std::move(socket)), m_server(server)
@@ -27,6 +29,9 @@ public:
     {
         LOG("#Client session destroyed");
     }
+
+    void setName( std::string name ) { m_name = name; }
+    std::string getName() { return m_name; }
 
     void start()
     {

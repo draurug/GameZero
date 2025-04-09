@@ -103,6 +103,7 @@ public:
     // Отправка сообщения другому клиенту.
     void sendMessage(const std::string& recipient, const std::string& message)
     {
+        // packet := <recipient> 0x0 <message>
         std::vector<uint8_t> packet = {static_cast<uint8_t>(ClSendMessage)};
         packet.insert(packet.end(), recipient.begin(), recipient.end());
         packet.push_back('\0'); // Разделитель между именем и текстом сообщения
